@@ -4,18 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Favicon -->
+
   <link rel="icon" type="icon" href="assets/images/favicon.png" />
   <title>Lái Xe Hộ Đà Nẵng - Như Ý Driver</title>
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
 
+  <!-- Tailwind + Custom -->
   <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="node_modules/swiper/swiper-bundle.css">
   <link rel="stylesheet" href="assets/css/custom.css">
+
+  <!-- ⭐ FIX SWIPER: Dùng CDN thay vì node_modules -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
+
 
 <body>
 
@@ -136,7 +141,7 @@
 
       <!-- Right column: Responsive image -->
       <div class="md:w-1/2">
-        <img src="/assets/images/1.png" alt="Image" class="w-full md:mx-auto md:max-w-md" />
+        <img src="assets/images/1.png" alt="Image" class="w-full md:mx-auto md:max-w-md" />
       </div>
     </div>
   </section>
@@ -145,7 +150,7 @@
     <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
       <!-- Left column: Image -->
       <div class="md:w-1/2 mb-8 md:mb-0">
-        <img src="/assets/images/2.png" alt="Image" class="w-full md:mx-auto md:max-w-md" />
+        <img src="assets/images/2.png" alt="Image" class="w-full md:mx-auto md:max-w-md" />
       </div>
 
       <!-- Right column: Title, description list, and button -->
@@ -225,7 +230,7 @@
         <div class="swiper-wrapper">
 
           <div class="swiper-slide flex flex-col space-y-4">
-            <img class="w-20 h-20 rounded-full mx-auto object-cover" src="/assets/images/testimonials-1.jpg"
+            <img class="w-20 h-20 rounded-full mx-auto object-cover" src="assets/images/testimonials-1.jpg"
               alt="User Image">
             <h3 class="text-lg font-medium text-gray-700 text-primary">Minh Nguyệt</h3>
             <h6 class="text-base text-gray-500 max-w-[800px] text-white">
@@ -235,7 +240,7 @@
           </div>
 
           <div class="swiper-slide flex flex-col space-y-4">
-            <img class="w-20 h-20 rounded-full mx-auto object-cover" src="/assets/images/testimonials-2.jpg"
+            <img class="w-20 h-20 rounded-full mx-auto object-cover" src="assets/images/testimonials-2.jpg"
               alt="User Image">
             <h3 class="text-lg font-medium text-gray-700 text-primary">Anh Chụt</h3>
             <h6 class="text-base text-gray-500 max-w-[800px] text-white">
@@ -245,7 +250,7 @@
           </div>
 
           <div class="swiper-slide flex flex-col space-y-4">
-            <img class="w-20 h-20 rounded-full mx-auto object-cover" src="/assets/images/testimonials-3.jpg"
+            <img class="w-20 h-20 rounded-full mx-auto object-cover" src="assets/images/testimonials-3.jpg"
               alt="User Image">
             <h3 class="text-lg font-medium text-gray-700 text-primary">Chị Min</h3>
             <h6 class="text-base text-gray-500 max-w-[800px] text-white">
@@ -312,7 +317,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         <div class="group portfolio-item relative hover:shadow-lg shadow-md rounded-lg overflow-hidden">
           <a href="/project-1">
-            <img class="w-full h-60 object-cover" src="/assets/images/portfolio-1.jpg" alt="Project 1">
+            <img class="w-full h-60 object-cover" src="assets/images/portfolio-1.jpg" alt="Project 1">
             <div
               class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-primary to-secondary opacity-0 transition duration-300 ease-in-out group-hover:opacity-70">
             </div>
@@ -326,7 +331,7 @@
         </div>
         <div class="group portfolio-item relative hover:shadow-lg shadow-md rounded-lg overflow-hidden">
           <a href="/project-2">
-            <img class="w-full h-60 object-cover" src="/assets/images/portfolio-2.jpg" alt="Project 1">
+            <img class="w-full h-60 object-cover" src="assets/images/portfolio-2.jpg" alt="Project 1">
             <div
               class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-primary to-secondary opacity-0 transition duration-300 ease-in-out group-hover:opacity-70">
             </div>
@@ -339,7 +344,7 @@
         </div>
         <div class="group portfolio-item relative hover:shadow-lg shadow-md rounded-lg overflow-hidden">
           <a href="/project-3">
-            <img class="w-full h-60 object-cover" src="/assets/images/portfolio-3.jpg" alt="Project 1">
+            <img class="w-full h-60 object-cover" src="assets/images/portfolio-3.jpg" alt="Project 1">
             <div
               class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-primary to-secondary opacity-0 transition duration-300 ease-in-out group-hover:opacity-70">
             </div>
@@ -352,7 +357,7 @@
         </div>
         <div class="group portfolio-item relative hover:shadow-lg shadow-md rounded-lg overflow-hidden">
           <a href="/project-4">
-            <img class="w-full h-60 object-cover" src="/assets/images/portfolio-4.png" alt="Project 1">
+            <img class="w-full h-60 object-cover" src="assets/images/portfolio-4.png" alt="Project 1">
             <div
               class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-primary to-secondary opacity-0 transition duration-300 ease-in-out group-hover:opacity-70">
             </div>
@@ -365,7 +370,7 @@
         </div>
         <div class="group portfolio-item relative hover:shadow-lg shadow-md rounded-lg overflow-hidden">
           <a href="/project-5">
-            <img class="w-full h-60 object-cover" src="/assets/images/portfolio-5.jpg" alt="Project 1">
+            <img class="w-full h-60 object-cover" src="assets/images/portfolio-5.jpg" alt="Project 1">
             <div
               class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-primary to-secondary opacity-0 transition duration-300 ease-in-out group-hover:opacity-70">
             </div>
@@ -378,7 +383,7 @@
         </div>
         <div class="group portfolio-item relative hover:shadow-lg shadow-md rounded-lg overflow-hidden">
           <a href="/project-6">
-            <img class="w-full h-60 object-cover" src="/assets/images/portfolio-6.jpg" alt="Project 1">
+            <img class="w-full h-60 object-cover" src="assets/images/portfolio-6.jpg" alt="Project 1">
             <div
               class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-primary to-secondary opacity-0 transition duration-300 ease-in-out group-hover:opacity-70">
             </div>
@@ -407,7 +412,7 @@
 
         <!-- Ảnh card visit (mặt trước) -->
         <div class="bg-white rounded-lg overflow-hidden shadow-md">
-          <img src="/assets/images/card.png" alt="Thông Tin Thương Hiệu" class="w-full h-auto">
+          <img src="assets/images/card.png" alt="Thông Tin Thương Hiệu" class="w-full h-auto">
           <div class="p-4 text-center">
             <h3 class="text-xl font-bold text-primary">Thông Tin Thương Hiệu</h3>
             <p class="text-gray-dark mt-2">
@@ -418,7 +423,7 @@
 
         <!-- Ảnh người tài xế -->
         <div class="bg-white rounded-lg overflow-hidden shadow-md">
-          <img src="/assets/images/driver.jpg" alt="Như Ý Driver" class="w-full h-auto">
+          <img src="assets/images/driver.jpg" alt="Như Ý Driver" class="w-full h-auto">
           <div class="p-4 text-center">
             <h3 class="text-xl font-bold text-primary">Người Phụ Trách Dịch Vụ</h3>
             <p class="text-gray-dark mt-2">
@@ -429,7 +434,7 @@
 
         <!-- Ảnh card visit (mặt sau / bảng giá) -->
         <div class="bg-white rounded-lg overflow-hidden shadow-md">
-          <img src="/assets/images/card-b.png" alt="Thông Tin Liên Hệ & Bảng Giá" class="w-full h-auto">
+          <img src="assets/images/card-b.png" alt="Thông Tin Liên Hệ & Bảng Giá" class="w-full h-auto">
           <div class="p-4 text-center">
             <h3 class="text-xl font-bold text-primary">Bảng Giá</h3>
             <p class="text-gray-dark mt-2">
@@ -609,7 +614,9 @@
 
 
 
-  <script src="node_modules/swiper/swiper-bundle.js"></script>
+  <!-- Swiper JS (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
   <!-- EmailJS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
@@ -617,6 +624,7 @@
     emailjs.init("rqHcQMoqLt-hNr90z");
   </script>
 
+  <!-- Main Script -->
   <script src="assets/js/script.js"></script>
 </body>
 
