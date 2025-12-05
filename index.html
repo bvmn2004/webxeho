@@ -1,0 +1,623 @@
+<!doctype html>
+`<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon -->
+  <link rel="icon" type="icon" href="assets/images/favicon.png" />
+  <title>Lái Xe Hộ Đà Nẵng - Như Ý Driver</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="node_modules/swiper/swiper-bundle.css">
+  <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+
+<body>
+
+  <div id="floating-contact">
+
+    <!-- Facebook -->
+    <a href="https://facebook.com/profile.php?id=61583832241506" target="_blank" class="fc-btn fb-btn">
+
+      <div class="ripple-circle"></div>
+      <div class="ripple-fill"></div>
+
+      <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" width="26" height="26" viewBox="0 0 24 24">
+        <path
+          d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12" />
+      </svg>
+    </a>
+
+
+    <!-- Zalo -->
+    <a href="https://zalo.me/0985666044" target="_blank" class="fc-btn zalo-btn">
+
+      <div class="ripple-circle"></div>
+      <div class="ripple-fill"></div>
+
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Icon_of_Zalo.svg/512px-Icon_of_Zalo.svg.png"
+        width="30" height="30" alt="Zalo">
+    </a>
+
+
+    <!-- Phone -->
+    <a href="tel:0985666044" class="fc-btn call-btn">
+
+      <div class="ripple-circle"></div>
+      <div class="ripple-fill"></div>
+
+      <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" width="26" height="26" viewBox="0 0 24 24">
+        <path
+          d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.3 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V21c0 .6-.4 1-1 1A19 19 0 0 1 3 5c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.5.6 3.6.1.4 0 .8-.3 1l-2.2 2.2z" />
+      </svg>
+    </a>
+
+  </div>
+
+
+
+  <header class="bg-gray-light sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center py-4">
+      <!-- Left section: Logo -->
+      <div class="flex items-center">
+        <img src="assets/images/logo-y.png" alt="Logo" class="h-14 w-auto mr-4">
+      </div>
+
+      <!-- Hamburger menu (for mobile) -->
+      <div class="flex md:hidden">
+        <button id="hamburger" class="text-white focus:outline-none">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Center section: Menu -->
+      <nav class="hidden md:flex md:flex-grow justify-center">
+        <ul class="flex justify-center space-x-4 text-white">
+          <li><a href="#home" class="hover:text-secondary font-bold">Trang Chủ</a></li>
+          <li><a href="#aboutus" class="hover:text-secondary font-bold">Giới Thiệu</a></li>
+          <li><a href="#results" class="hover:text-secondary font-bold">Thành Tựu</a></li>
+          <li><a href="#reviews" class="hover:text-secondary font-bold">Đánh Giá</a></li>
+          <li><a href="#portfolio" class="hover:text-secondary font-bold">Dịch Vụ</a></li>
+          <li><a href="#team" class="hover:text-secondary font-bold">Đội Ngũ</a></li>
+          <li><a href="#contact" class="hover:text-secondary font-bold">Liên Hệ</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right section: Buttons (for desktop) -->
+      <div class="hidden lg:flex items-center space-x-4">
+        <a href="https://www.facebook.com/profile.php?id=61583832241506"
+          class="bg-secondary hover:bg-primary text-white font-semibold px-4 py-2 rounded inline-block">Facebook</a>
+        <a href="https://zalo.me/0985666044"
+          class="bg-primary hover:bg-secondary text-white font-semibold px-4 py-2 rounded inline-block">Zalo</a>
+      </div>
+    </div>
+  </header>
+  <!-- Mobile menu -->
+  <nav id="mobile-menu-placeholder" class="mobile-menu hidden flex flex-col items-center space-y-8 md:hidden">
+    <ul>
+      <li><a href="#home" class="hover:text-secondary font-bold">Trang Chủ</a></li>
+      <li><a href="#aboutus" class="hover:text-secondary font-bold">Giới Thiệu</a></li>
+      <li><a href="#results" class="hover:text-secondary font-bold">Thành Tựu</a></li>
+      <li><a href="#reviews" class="hover:text-secondary font-bold">Đánh Giá</a></li>
+      <li><a href="#portfolio" class="hover:text-secondary font-bold">Dịch Vụ</a></li>
+      <li><a href="#team" class="hover:text-secondary font-bold">Đội Ngũ</a></li>
+      <li><a href="#contact" class="hover:text-secondary font-bold">Liên Hệ</a></li>
+    </ul>
+    <div class="flex flex-col mt-6 space-y-2 items-center">
+      <a href="https://www.facebook.com/profile.php?id=61583832241506"
+        class="bg-secondary hover:bg-primary text-white font-semibold px-4 py-2 rounded inline-block flex items-center justify-center min-w-[110px]">Facebook</a>
+      <a href="https://zalo.me/0985666044"
+        class="bg-primary hover:bg-secondary text-white font-semibold px-4 py-2 rounded inline-block flex items-center justify-center min-w-[110px]">Zalo</a>
+    </div>
+  </nav>
+
+  <section id="home" class="bg-white py-16">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+      <!-- Left column: Description and buttons -->
+      <div class="md:w-1/2 text-center md:text-left mb-8 md:mb-0">
+        <h2 class="text-5xl font-bold mb-4">Lái Xe Hộ<span class="text-primary"> Đà Nẵng</span> <span
+            class="text-gray-light">- Như Ý Driver</span></h2>
+        <p class="my-7">Như Ý Driver – nhận lái xe hộ chuyên nghiệp, an toàn, nhanh chóng tại Đà Nẵng. Hỗ trợ 24/7, tài
+          xế kinh nghiệm, tận tâm và luôn đúng giờ. Gọi là có mặt chỉ sau vài phút.</p>
+        <div class="space-x-2">
+          <a href="https://www.facebook.com/profile.php?id=61583832241506"
+            class="bg-secondary hover:bg-primary text-white font-semibold px-4 py-2 rounded inline-block">Facebook</a>
+          <a href="https://zaloapp.com/qr/p/4yl2ktpn17ny"
+            class="bg-primary hover:bg-secondary text-white font-semibold px-4 py-2 rounded inline-block">Zalo</a>
+        </div>
+      </div>
+
+      <!-- Right column: Responsive image -->
+      <div class="md:w-1/2">
+        <img src="/assets/images/1.png" alt="Image" class="w-full md:mx-auto md:max-w-md" />
+      </div>
+    </div>
+  </section>
+
+  <section id="aboutus" class="py-16 bg-gray-dark">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+      <!-- Left column: Image -->
+      <div class="md:w-1/2 mb-8 md:mb-0">
+        <img src="/assets/images/2.png" alt="Image" class="w-full md:mx-auto md:max-w-md" />
+      </div>
+
+      <!-- Right column: Title, description list, and button -->
+      <div class="md:w-1/2">
+        <h2 class="text-5xl font-bold mb-4 text-white">Quy Trình <span class="text-primary">Lái Xe Hộ</span></h2>
+        <p class="my-5 text-white">Dịch vụ Như Ý Driver cam kết mang lại trải nghiệm an toàn – tận tâm – nhanh chóng.
+          Quy trình làm việc rõ ràng giúp khách hàng yên tâm tuyệt đối khi sử dụng dịch vụ.</p>
+        <ol class="mb-10 list-outside">
+          <li class="flex items-center mb-4">
+            <strong
+              class="bg-primary text-white rounded-full w-8 h-8 text-lg font-semibold flex items-center justify-center mr-3">1</strong>
+            <span class="text-white">Tiếp nhận yêu cầu qua điện thoại hoặc Zalo.</span>
+          </li>
+          <li class="flex items-center mb-4">
+            <strong
+              class="bg-primary text-white rounded-full w-8 h-8 text-lg font-semibold flex items-center justify-center mr-3">2</strong>
+            <span class="text-white">Tài xế xác nhận lộ trình, giá dịch vụ và thời gian có mặt.</span>
+          </li>
+          <li class="flex items-center mb-4">
+            <strong
+              class="bg-primary text-white rounded-full w-8 h-8 text-lg font-semibold flex items-center justify-center mr-3">3</strong>
+            <span class="text-white">Tới tận nơi, lái xe an toàn & đưa khách về tận nhà.</span>
+          </li>
+        </ol>
+        <a href="#contact"
+          class="bg-secondary hover:bg-primary text-white font-semibold px-4 py-2 rounded inline-block">
+          Liên Hệ Ngay
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="results" class="bg-gray-lighter py-16 success-metrics">
+    <div class="container mx-auto">
+      <!-- First row: Title and subtitle -->
+      <div class="text-center mb-12">
+        <h2 class="text-5xl font-bold mb-4">Thành Tựu</h2>
+        <p class="text-lg text-primary font-semibold">Sự tin tưởng của khách hàng dành cho Như Ý Driver</p>
+      </div>
+
+      <!-- Second row: Four columns with success metrics -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div
+          class="success-metric bg-white p-6 rounded-lg shadow-lg text-center group hover:bg-primary hover:text-white transition-all duration-300">
+          <h3 class="text-2xl font-bold text-primary counter" data-target-value="500">500+</h3>
+          <p class="text-lg">Chuyến Xe An Toàn</p>
+        </div>
+        <div
+          class="success-metric bg-white p-6 rounded-lg shadow-lg text-center group hover:bg-primary hover:text-white transition-all duration-300">
+          <h3 class="text-2xl font-bold text-primary counter" data-target-value="400">300+</h3>
+          <p class="text-lg">Khách Hàng Hài Lòng</p>
+        </div>
+        <div
+          class="success-metric bg-white p-6 rounded-lg shadow-lg text-center group hover:bg-primary hover:text-white transition-all duration-300">
+          <h3 class="text-2xl font-bold text-primary counter" data-target-value="3">3</h3>
+          <p class="text-lg">Kinh Nghiệm Lái Xe</p>
+        </div>
+        <div
+          class="success-metric bg-white p-6 rounded-lg shadow-lg text-center group hover:bg-primary hover:text-white transition-all duration-300">
+          <h3 class="text-2xl font-bold text-primary ">24/7</h3>
+          <p class="text-lg">Luôn sẵn sàng phục vụ</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="bg-white py-16 px-4">
+    <div class="container mx-auto max-w-screen-xl px-4 testimonials">
+      <div class="text-center mb-12 lg:mb-20">
+        <h2 class="text-5xl font-bold mb-4 text-white">Nhận Xét Của Khách Hàng</h2>
+        <p class="text-lg text-primary font-semibold">Cảm nhận thực tế từ khách đã sử dụng dịch vụ</p>
+      </div>
+
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide flex flex-col space-y-4">
+            <img class="w-20 h-20 rounded-full mx-auto object-cover" src="/assets/images/testimonials-1.jpg"
+              alt="User Image">
+            <h3 class="text-lg font-medium text-gray-700 text-primary">Minh Nguyệt</h3>
+            <h6 class="text-base text-gray-500 max-w-[800px] text-white">
+              "Tài xế đến rất nhanh, chạy xe cẩn thận và hỗ trợ mình lấy đồ trên xe nữa.
+              Rất chuyên nghiệp và lịch sự. Mình sẽ tiếp tục sử dụng dịch vụ Như Ý Driver."
+            </h6>
+          </div>
+
+          <div class="swiper-slide flex flex-col space-y-4">
+            <img class="w-20 h-20 rounded-full mx-auto object-cover" src="/assets/images/testimonials-2.jpg"
+              alt="User Image">
+            <h3 class="text-lg font-medium text-gray-700 text-primary">Anh Chụt</h3>
+            <h6 class="text-base text-gray-500 max-w-[800px] text-white">
+              "Sau buổi tiệc mình không thể tự lái về. May có Như Ý Driver đến chỉ sau 10 phút.
+              An toàn – giá hợp lý – phục vụ tận tâm."
+            </h6>
+          </div>
+
+          <div class="swiper-slide flex flex-col space-y-4">
+            <img class="w-20 h-20 rounded-full mx-auto object-cover" src="/assets/images/testimonials-3.jpg"
+              alt="User Image">
+            <h3 class="text-lg font-medium text-gray-700 text-primary">Chị Min</h3>
+            <h6 class="text-base text-gray-500 max-w-[800px] text-white">
+              "Tài xế hỗ trợ nhiệt tình, còn giúp mình kiểm tra xe trước khi chạy.
+              Giá cả minh bạch, đúng như báo giá ban đầu. Rất uy tín."
+            </h6>
+          </div>
+          <!-- Review 4 -->
+          <div class="swiper-slide flex flex-col space-y-4">
+            <img class="w-20 h-20 rounded-full mx-auto object-cover" src="assets/images/testimonials-4.jpg"
+              alt="User Image">
+            <h3 class="text-lg font-medium text-primary text-center">Chị Trang</h3>
+            <h6 class="text-base text-gray-dark-500 max-w-[800px] mx-auto text-white">
+              “Mình hay đi karaoke cùng bạn và đều gọi Như Ý Driver đưa về.
+              Tài xế chạy êm, nói chuyện dễ thương, phục vụ đúng giờ. 10/10.”
+            </h6>
+          </div>
+
+          <!-- Review 5 -->
+          <div class="swiper-slide flex flex-col space-y-4">
+            <img class="w-20 h-20 rounded-full mx-auto object-cover" src="assets/images/testimonials-5.jpg"
+              alt="User Image">
+            <h3 class="text-lg font-medium text-primary text-center">Anh Khải</h3>
+            <h6 class="text-base text-gray-dark-500 max-w-[800px] mx-auto text-white">
+              “Hôm đó trời mưa lớn, tài xế vẫn có mặt rất nhanh.
+              Lái xe cẩn thận, luôn hỏi thăm mình có thoải mái không.
+              Dịch vụ đáng tin cậy.”
+            </h6>
+          </div>
+
+          <!-- Review 6 -->
+          <div class="swiper-slide flex flex-col space-y-4">
+            <img class="w-20 h-20 rounded-full mx-auto object-cover" src="assets/images/testimonials-6.jpg"
+              alt="User Image">
+            <h3 class="text-lg font-medium text-primary text-center">Tuấn Minh</h3>
+            <h6 class="text-base text-gray-dark-500 max-w-[800px] mx-auto text-white">
+              “Lần đầu sử dụng dịch vụ lái hộ và thật sự bất ngờ vì quá chuyên nghiệp.
+              Tài xế lịch sự, hỗ trợ tận tình từ đầu đến cuối. Sẽ giới thiệu cho bạn bè!”
+            </h6>
+          </div>
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio" class="portfolio-section py-16 px-4">
+    <div class="container mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-5xl font-bold mb-4">Khi Nào Nên Sử Dụng?</h2>
+        <p class="text-lg text-primary font-semibold">Những tình huống phổ biến cần tài xế lái xe hộ</p>
+      </div>
+      <!-- <div class="flex flex-col md:flex-row items-center mb-8">
+        <button class="filter-button bg-primary hover:bg-secondary px-4 py-2 mr-2 mb-2 text-white rounded">All</button>
+        <button class="filter-button  bg-primary hover:bg-secondary px-4 py-2 mr-2 mb-2 text-white rounded">Web
+          Design</button>
+        <button class="filter-button  bg-primary hover:bg-secondary px-4 py-2 mr-2 mb-2 text-white rounded">App
+          Development</button>
+        <button
+          class="filter-button  bg-primary hover:bg-secondary px-4 py-2 mr-2 mb-2 text-white rounded">Branding</button>
+      </div> -->
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div class="group portfolio-item relative hover:shadow-lg shadow-md rounded-lg overflow-hidden">
+          <a href="/project-1">
+            <img class="w-full h-60 object-cover" src="/assets/images/portfolio-1.jpg" alt="Project 1">
+            <div
+              class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-primary to-secondary opacity-0 transition duration-300 ease-in-out group-hover:opacity-70">
+            </div>
+            <div class="p-4 flex flex-col items-center justify-between relative z-10">
+              <h3 class="text-lg font-medium text-txt group-hover:text-gray-dark">Sau Tiệc Nhậu - Liên Hoan - Tất Niên
+              </h3>
+              <span class="text-sm font-bold text-secondary group-hover:text-primary">Không đủ tỉnh táo để tự lái? Tài
+                xế sẽ đưa bạn và xe về nhà an toàn.</span>
+            </div>
+          </a>
+        </div>
+        <div class="group portfolio-item relative hover:shadow-lg shadow-md rounded-lg overflow-hidden">
+          <a href="/project-2">
+            <img class="w-full h-60 object-cover" src="/assets/images/portfolio-2.jpg" alt="Project 1">
+            <div
+              class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-primary to-secondary opacity-0 transition duration-300 ease-in-out group-hover:opacity-70">
+            </div>
+            <div class="p-4 flex flex-col items-center justify-between relative z-10">
+              <h3 class="text-lg font-medium text-txt group-hover:text-gray-dark">Đi Du Lịch</h3>
+              <span class="text-sm font-bold text-secondary group-hover:text-primary">Thoải mái tận hưởng chuyến đi mà
+                không phải tự lái hoặc tìm đường.</span>
+            </div>
+          </a>
+        </div>
+        <div class="group portfolio-item relative hover:shadow-lg shadow-md rounded-lg overflow-hidden">
+          <a href="/project-3">
+            <img class="w-full h-60 object-cover" src="/assets/images/portfolio-3.jpg" alt="Project 1">
+            <div
+              class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-primary to-secondary opacity-0 transition duration-300 ease-in-out group-hover:opacity-70">
+            </div>
+            <div class="p-4 flex flex-col items-center justify-between relative z-10">
+              <h3 class="text-lg font-medium text-txt group-hover:text-gray-dark">Lái Xe Hộ Đường Dài</h3>
+              <span class="text-sm font-bold text-secondary group-hover:text-primary">Di chuyển liên tỉnh bằng chính xe
+                của bạn. Tài xế chuyên nghiệp – an toàn – kinh nghiệm.</span>
+            </div>
+          </a>
+        </div>
+        <div class="group portfolio-item relative hover:shadow-lg shadow-md rounded-lg overflow-hidden">
+          <a href="/project-4">
+            <img class="w-full h-60 object-cover" src="/assets/images/portfolio-4.png" alt="Project 1">
+            <div
+              class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-primary to-secondary opacity-0 transition duration-300 ease-in-out group-hover:opacity-70">
+            </div>
+            <div class="p-4 flex flex-col items-center justify-between relative z-10">
+              <h3 class="text-lg font-medium text-txt group-hover:text-gray-dark">Tài Xế Theo Giờ</h3>
+              <span class="text-sm font-bold text-secondary group-hover:text-primary">Tài xế tạm thời cho bạn khi cần:
+                chạy việc cá nhân, họp hành, đưa đón trong ngày.</span>
+            </div>
+          </a>
+        </div>
+        <div class="group portfolio-item relative hover:shadow-lg shadow-md rounded-lg overflow-hidden">
+          <a href="/project-5">
+            <img class="w-full h-60 object-cover" src="/assets/images/portfolio-5.jpg" alt="Project 1">
+            <div
+              class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-primary to-secondary opacity-0 transition duration-300 ease-in-out group-hover:opacity-70">
+            </div>
+            <div class="p-4 flex flex-col items-center justify-between relative z-10">
+              <h3 class="text-lg font-medium text-txt group-hover:text-gray-dark">Đưa Bạn Về Tận Nhà</h3>
+              <span class="text-sm font-bold text-secondary group-hover:text-primary">Đón tận nơi – lái xe an toàn về
+                đến trước cửa nhà bạn. Có mặt sau vài phút.</span>
+            </div>
+          </a>
+        </div>
+        <div class="group portfolio-item relative hover:shadow-lg shadow-md rounded-lg overflow-hidden">
+          <a href="/project-6">
+            <img class="w-full h-60 object-cover" src="/assets/images/portfolio-6.jpg" alt="Project 1">
+            <div
+              class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-primary to-secondary opacity-0 transition duration-300 ease-in-out group-hover:opacity-70">
+            </div>
+            <div class="p-4 flex flex-col items-center justify-between relative z-10">
+              <h3 class="text-lg font-medium text-txt group-hover:text-gray-dark">Hỗ Trợ Người Thân</h3>
+              <span class="text-sm font-bold text-secondary group-hover:text-primary">Đưa đón người thân đi khám bệnh,
+                họp, hoặc di chuyển trong ngày.</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="team" class="bg-gray-dark py-16 px-4">
+    <div class="container mx-auto">
+
+      <div class="text-center mb-12 lg:mb-16">
+        <h2 class="text-5xl font-bold text-white mb-4">Về Như Ý Driver</h2>
+        <p class="text-lg text-primary font-semibold">
+          Dịch Vụ Lái Xe Hộ Chuyên Nghiệp – Uy Tín – Phục Vụ 24/7
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <!-- Ảnh card visit (mặt trước) -->
+        <div class="bg-white rounded-lg overflow-hidden shadow-md">
+          <img src="/assets/images/card.png" alt="Thông Tin Thương Hiệu" class="w-full h-auto">
+          <div class="p-4 text-center">
+            <h3 class="text-xl font-bold text-primary">Thông Tin Thương Hiệu</h3>
+            <p class="text-gray-dark mt-2">
+              Nhận diện chính của Như Ý Driver.
+            </p>
+          </div>
+        </div>
+
+        <!-- Ảnh người tài xế -->
+        <div class="bg-white rounded-lg overflow-hidden shadow-md">
+          <img src="/assets/images/driver.jpg" alt="Như Ý Driver" class="w-full h-auto">
+          <div class="p-4 text-center">
+            <h3 class="text-xl font-bold text-primary">Người Phụ Trách Dịch Vụ</h3>
+            <p class="text-gray-dark mt-2">
+              Tài xế kinh nghiệm – lái an toàn – có mặt nhanh chóng khi bạn cần.
+            </p>
+          </div>
+        </div>
+
+        <!-- Ảnh card visit (mặt sau / bảng giá) -->
+        <div class="bg-white rounded-lg overflow-hidden shadow-md">
+          <img src="/assets/images/card-b.png" alt="Thông Tin Liên Hệ & Bảng Giá" class="w-full h-auto">
+          <div class="p-4 text-center">
+            <h3 class="text-xl font-bold text-primary">Bảng Giá</h3>
+            <p class="text-gray-dark mt-2">
+              Các phương thức liên hệ – bảng giá tham khảo – thông tin hỗ trợ.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="bg-cover bg-no-repeat bg-center relative py-16 px-2">
+    <div
+      class="grid md:grid-cols-2 gap-16 items-center relative overflow-hidden p-10 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-3xl max-w-6xl mx-auto bg-white text-[#333] my-6 before:absolute before:right-0 before:w-[300px] before:bg-blue-400 before:h-full max-md:before:hidden">
+
+      <!-- Left: Contact form + info -->
+      <div>
+        <h2 class="text-5xl font-bold text-primary">Liên Hệ Như Ý Driver</h2>
+        <p class="text-gray-dark mt-5">
+          Cần tài xế lái xe hộ tại Đà Nẵng? Gọi hoặc nhắn Zalo/Facebook, chúng tôi luôn sẵn sàng hỗ trợ 24/7.
+        </p>
+        <form id="contact-form">
+          <div class="space-y-4 mt-8">
+            <input type="text" name="name" placeholder="Họ và tên"
+              class="px-2 py-3 bg-white w-full text-sm border-b outline-none" />
+
+            <input type="tel" name="phone" placeholder="Số điện thoại"
+              class="px-2 py-3 bg-white w-full text-sm border-b outline-none" />
+
+            <input type="email" name="email" placeholder="Email (nếu có)"
+              class="px-2 py-3 bg-white w-full text-sm border-b outline-none" />
+
+            <textarea name="message" placeholder="Nội dung yêu cầu (thời gian, lộ trình, điểm đón...)"
+              class="px-2 pt-3 bg-white text-gray-dark w-full text-sm border-b outline-none"></textarea>
+          </div>
+
+          <button type="submit"
+            class="mt-8 flex items-center justify-center text-sm w-full rounded px-4 py-2.5 font-semibold bg-primary text-white hover:bg-secondary">
+            Gửi tin nhắn
+          </button>
+        </form>
+
+
+        <ul class="mt-4 flex justify-center lg:space-x-6 max-lg:flex-col max-lg:items-center max-lg:space-y-2">
+          <li class="flex items-center hover:text-blue-500">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="currentColor"
+              viewBox="0 0 479.058 479.058">
+              <path
+                d="M434.146 59.882H44.912C20.146 59.882 0 80.028 0 104.794v269.47c0 24.766 20.146 44.912 44.912 44.912h389.234c24.766 0 44.912-20.146 44.912-44.912v-269.47c0-24.766-20.146-44.912-44.912-44.912zm0 29.941c2.034 0 3.969.422 5.738 1.159L239.529 264.631 39.173 90.982a14.902 14.902 0 0 1 5.738-1.159zm0 299.411H44.912c-8.26 0-14.971-6.71-14.971-14.971V122.615l199.778 173.141c2.822 2.441 6.316 3.655 9.81 3.655s6.988-1.213 9.81-3.655l199.778-173.141v251.649c-.001 8.26-6.711 14.97-14.971 14.97z"
+                data-original="#006BFD" />
+            </svg>
+            <a href="mailto:trannhuy4781@gmail.com" class="text-current text-sm ml-3">
+              <strong>trannhuy4781@gmail.com</strong>
+            </a>
+          </li>
+          <li class="flex items-center text-current hover:text-blue-500">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="currentColor"
+              viewBox="0 0 482.6 482.6">
+              <path
+                d="M98.339 320.8c47.6 56.9 104.9 101.7 170.3 133.4 24.9 11.8 58.2 25.8 95.3 28.2 2.3.1 4.5.2 6.8.2 24.9 0 44.9-8.6 61.2-26.3.1-.1.3-.3.4-.5 5.8-7 12.4-13.3 19.3-20 4.7-4.5 9.5-9.2 14.1-14 21.3-22.2 21.3-50.4-.2-71.9l-60.1-60.1c-10.2-10.6-22.4-16.2-35.2-16.2-12.8 0-25.1 5.6-35.6 16.1l-35.8 35.8c-3.3-1.9-6.7-3.6-9.9-5.2-4-2-7.7-3.9-11-6-32.6-20.7-62.2-47.7-90.5-82.4-14.3-18.1-23.9-33.3-30.6-48.8 9.4-8.5 18.2-17.4 26.7-26.1 3-3.1 6.1-6.2 9.2-9.3 10.8-10.8 16.6-23.3 16.6-36s-5.7-25.2-16.6-36l-29.8-29.8c-3.5-3.5-6.8-6.9-10.2-10.4-6.6-6.8-13.5-13.8-20.3-20.1-10.3-10.1-22.4-15.4-35.2-15.4-12.7 0-24.9 5.3-35.6 15.5l-37.4 37.4c-13.6 13.6-21.3 30.1-22.9 49.2-1.9 23.9 2.5 49.3 13.9 80 17.5 47.5 43.9 91.6 83.1 138.7zm-72.6-216.6c1.2-13.3 6.3-24.4 15.9-34l37.2-37.2c5.8-5.6 12.2-8.5 18.4-8.5 6.1 0 12.3 2.9 18 8.7 6.7 6.2 13 12.7 19.8 19.6 3.4 3.5 6.9 7 10.4 10.6l29.8 29.8c6.2 6.2 9.4 12.5 9.4 18.7s-3.2 12.5-9.4 18.7c-3.1 3.1-6.2 6.3-9.3 9.4-9.3 9.4-18 18.3-27.6 26.8l-.5.5c-8.3 8.3-7 16.2-5 22.2.1.3.2.5.3.8 7.7 18.5 18.4 36.1 35.1 57.1 30 37 61.6 65.7 96.4 87.8 4.3 2.8 8.9 5 13.2 7.2 4 2 7.7 3.9 11 6 .4.2.7.4 1.1.6 3.3 1.7 6.5 2.5 9.7 2.5 8 0 13.2-5.1 14.9-6.8l37.4-37.4c5.8-5.8 12.1-8.9 18.3-8.9 7.6 0 13.8 4.7 17.7 8.9l60.3 60.2c12 12 11.9 25-.3 37.7-4.2 4.5-8.6 8.8-13.3 13.3-7 6.8-14.3 13.8-20.9 21.7-11.5 12.4-25.2 18.2-42.9 18.2-1.7 0-3.5-.1-5.2-.2-32.8-2.1-63.3-14.9-86.2-25.8-62.2-30.1-116.8-72.8-162.1-127-37.3-44.9-62.4-86.7-79-131.5-10.3-27.5-14.2-49.6-12.6-69.7z"
+                data-original="#006BFD"></path>
+            </svg>
+            <a href="tel:+84985666044" class="text-current text-sm ml-3">
+              <strong>+84 985 666 044</strong>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right: Google Maps -->
+      <div class="z-10 relative h-full max-md:min-h-[350px]">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d285.0513449274628!2d108.21657873262767!3d16.00422258549868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31421a16590c0463%3A0x7dd29b05da1462b3!2zNTkgS2jGsMahbmcgSOG7r3UgROG7pW5nLCBIb8OgIFh1w6JuLCBD4bqpbSBM4buHLCDEkMOgIE7hurVuZyA1NTAwMDAsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1764884514811!5m2!1svi!2s"
+          class="left-0 top-0 h-full w-full rounded-t-lg lg:rounded-tr-none lg:rounded-bl-lg" style="border:0;"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="bg-white text-gray-light py-16">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+
+      <!-- COLUMN 1: THÔNG TIN LIÊN HỆ -->
+      <div class="text-center md:text-left">
+        <h3 class="text-lg font-bold mb-4">Thông Tin Liên Hệ</h3>
+        <ul class="space-y-2 text-sm">
+          <li class="font-semibold text-base">Dịch vụ Lái Xe Hộ Đà Nẵng – Như Ý Driver</li>
+          <li>Địa chỉ: 59 Khương Hữu Dụng - Hoà Xuân - Cẩm Lệ - Đà Nẵng</li>
+          <li>
+            Hotline:
+            <a href="tel:0985666044" class="text-blue-400 hover:text-blue-300 font-bold">
+              0985 666 044
+            </a>
+          </li>
+          <li>
+            Email:
+            <a href="mailto:trannhuy4781@gmail.com" class="text-blue-400 hover:text-blue-300 font-bold">
+              trannhuy4781@gmail.com
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- COLUMN 2: KHU VỰC PHỤC VỤ -->
+      <div class="text-center md:text-left">
+        <h3 class="text-lg font-bold mb-4">Khu Vực Phục Vụ</h3>
+        <ul class="space-y-2 text-sm">
+          <li>Lái xe hộ Đà Nẵng</li>
+          <li>Lái xe hộ Sơn Trà</li>
+          <li>Lái xe hộ Ngũ Hành Sơn</li>
+          <li>Lái xe hộ Hải Châu</li>
+          <li>Lái xe hộ Thanh Khê</li>
+          <li>Lái xe hộ Cẩm Lệ</li>
+          <li>Lái xe hộ Liên Chiểu</li>
+          <li>Lái xe hộ Hoà Xuân</li>
+        </ul>
+      </div>
+
+      <!-- COLUMN 3: DỊCH VỤ HỖ TRỢ -->
+      <div class="text-center md:text-left">
+        <h3 class="text-lg font-bold mb-4">Dịch Vụ Hỗ Trợ</h3>
+        <ul class="space-y-2 text-sm mb-6">
+          <li>Lái xe hộ đường dài</li>
+          <li>Lái xe hộ sau tiệc</li>
+          <li>Lái xe hộ khi mệt / mất ngủ</li>
+          <li>Lái xe hộ đưa người thân</li>
+        </ul>
+
+        <!-- SOCIAL + LOGO -->
+        <img src="assets/images/logo-y.png" alt="Logo" class="h-16 w-auto mb-4 mx-auto md:mx-0">
+
+        <div class="flex items-center justify-center md:justify-start space-x-4">
+          <a href="https://www.facebook.com/profile.php?id=61583832241506" target="_blank"
+            class="hover:scale-110 transition">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-7 h-7">
+          </a>
+
+          <a href="https://www.tiktok.com/@trannhuy4781" target="_blank" class="hover:scale-110 transition">
+            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" class="w-7 h-7">
+          </a>
+
+          <a href="https://zalo.me/0985666044" target="_blank" class="hover:scale-110 transition">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg"
+              class="w-7 h-7 bg-white rounded-full p-1">
+          </a>
+        </div>
+      </div>
+
+      <!-- COLUMN 4: FANPAGE + CREDIT -->
+      <div class="flex flex-col items-center md:items-start">
+
+        <!-- FANPAGE -->
+        <div class="w-full mb-4">
+          <iframe
+            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61583832241506&tabs=timeline&width=340&height=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
+            width="100%" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen="true">
+          </iframe>
+        </div>
+
+        <!-- CREDIT -->
+        <p class="text-sm text-center md:text-left">
+          © 2025 – Như Ý Driver<br>
+          Thiết kế & vận hành bởi
+          <a href="https://www.facebook.com/wall.miin" class="text-blue-400 hover:text-blue-300 font-bold">
+            wall.miin
+          </a>
+        </p>
+
+      </div>
+
+    </div>
+  </footer>
+
+
+
+  <script src="node_modules/swiper/swiper-bundle.js"></script>
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+  <script>
+    emailjs.init("rqHcQMoqLt-hNr90z");
+  </script>
+
+  <script src="assets/js/script.js"></script>
+</body>
+
+</html>
