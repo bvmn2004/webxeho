@@ -93,6 +93,23 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
     gtag('config', 'AW-17783643653');
   </script>
 
+  <!-- Event snippet for Người liên hệ conversion -->
+  <script>
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+    gtag('event', 'conversion', {
+        'send_to': 'AW-17783643653/awXNCKranM0bEIW8859C',
+        'event_callback': callback
+    });
+    return false;
+  }
+  </script>
+
+
 </head>
 
 
@@ -115,7 +132,11 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
 
 
     <!-- Zalo -->
-    <a href="https://zalo.me/0985666044" target="_blank" class="fc-btn zalo-btn">
+    <a href="https://zalo.me/0985666044"
+     onclick="return gtag_report_conversion('https://zalo.me/0985666044');"
+     class="zalo-btn">
+     Zalo
+    </a>
 
       <div class="ripple-circle"></div>
       <div class="ripple-fill"></div>
@@ -126,7 +147,12 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
 
 
     <!-- Phone -->
-    <a href="tel:0985666044" class="fc-btn call-btn">
+    <a href="tel:+849856666044" 
+     onclick="return gtag_report_conversion('tel:+849856666044');"
+     class="call-btn">
+     Gọi ngay
+    </a>
+
 
       <div class="ripple-circle"></div>
       <div class="ripple-fill"></div>
