@@ -149,6 +149,15 @@ h1, h2, h3, h4, h5, h6, p, a {
   z-index: 5;
 }
 
+.zalo-icon-img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  background: #ffffff;
+  border-radius: 999px;
+  padding: 2px;
+}
+
 /* ---- VÒNG TRÒN TỎA RA ---- */
 .ripple-circle,
 .ripple-fill {
