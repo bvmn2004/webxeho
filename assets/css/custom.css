@@ -2,8 +2,28 @@ h1, h2, h3, h4, h5, h6, p, a {
     font-family: 'Manrope', sans-serif;
 }
 
+.site-header {
+  z-index: 2000 !important;
+}
+
+#quick-booking {
+  position: relative;
+  z-index: 1;
+}
+
+#booking-map,
+#booking-map .mapboxgl-canvas,
+#booking-map .mapboxgl-ctrl-top-right {
+  z-index: 1;
+}
+
 .mobile-menu {
     padding: 2rem;
+}
+
+.mobile-menu:not(.hidden) {
+  display: flex;
+  flex-direction: column;
 }
 
 .mobile-menu ul {
@@ -180,4 +200,242 @@ h1, h2, h3, h4, h5, h6, p, a {
 @keyframes ripple {
   0%   { transform: scale(0.85); opacity: 0.8; }
   100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* ========== QUICK BOOKING SECTION ========== */
+
+/* Booking Layout - 2 Cột Desktop, Dọc Mobile */
+.booking-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 24px;
+  align-items: stretch;
+  min-height: 600px;
+}
+
+.booking-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  background: #f7f8fa;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+}
+
+.booking-field-group {
+  position: relative;
+}
+
+.booking-action-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.booking-action-btn {
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #1f2937;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 14px;
+  transition: all 0.2s ease;
+}
+
+.booking-action-btn:hover {
+  border-color: #006BFD;
+  color: #006BFD;
+}
+
+.booking-action-btn.active,
+.booking-locate-btn {
+  background: #006BFD;
+  border-color: #006BFD;
+  color: #ffffff;
+}
+
+.booking-locate-btn:hover {
+  background: #0058cf;
+  border-color: #0058cf;
+  color: #ffffff;
+}
+
+.booking-map-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 560px;
+}
+
+.booking-map-inner {
+  width: 100%;
+  height: 100%;
+  min-height: 560px;
+  flex-grow: 1;
+}
+
+/* Responsive: Mobile Stack */
+@media (max-width: 991px) {
+  .booking-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    min-height: auto;
+    align-items: auto;
+  }
+
+  .booking-form-container {
+    height: auto;
+  }
+
+  .booking-map-container {
+    height: auto;
+    min-height: 360px;
+  }
+
+  .booking-map-inner {
+    min-height: 360px;
+  }
+}
+
+/* Suggestions Dropdown */
+#pickup-suggestions,
+#dropoff-suggestions {
+  top: 100%;
+  left: 0;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.suggestion-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 14px;
+  color: #252800;
+}
+
+.suggestion-item:hover {
+  background-color: #006BFD;
+  color: #ffffff;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+/* Map Styling */
+#booking-map {
+  width: 100%;
+  height: 100%;
+  min-height: 560px;
+  border-radius: 1rem;
+  border: 1px solid #dbe3ee;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+/* VietMap popup styling */
+.mapboxgl-popup-content {
+  font-size: 14px;
+  color: #252800;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+/* Form Input Focus Animation */
+#quick-booking-form input,
+#quick-booking-form textarea {
+  border-radius: 10px;
+  border-color: #cbd5e1;
+  font-size: 14px;
+  color: #0f172a;
+  transition: all 0.2s ease;
+}
+
+#quick-booking-form input::placeholder,
+#quick-booking-form textarea::placeholder {
+  color: #94a3b8;
+}
+
+#quick-booking-form input:focus,
+#quick-booking-form textarea:focus {
+  border-color: #0d63d6;
+  box-shadow: 0 0 0 3px rgba(13, 99, 214, 0.14);
+}
+
+#quick-booking-form label {
+  color: #111827;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+
+/* Submit Button Animation */
+#submit-booking-btn {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #0d63d6 !important;
+  color: #ffffff;
+  font-size: 16px;
+  box-shadow: 0 8px 16px rgba(13, 99, 214, 0.25);
+}
+
+#submit-booking-btn:hover {
+  background: #0a55b8 !important;
+}
+
+#submit-booking-btn:active {
+  transform: scale(0.98);
+}
+
+/* Loading State */
+#submit-booking-btn.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+#submit-booking-btn.loading::after {
+  content: '';
+}
+
+#quick-booking .border-l-4.border-primary {
+  border-left-width: 4px;
+  border-left-color: #0d63d6;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+#distance-display,
+#duration-display,
+#price-display {
+  line-height: 1.2;
+}
+
+#price-display.price-contact-note {
+  font-size: 18px !important;
+  color: #b45309 !important;
+  font-weight: 700;
+}
+
+/* Error & Success Messages */
+#booking-error-msg.show,
+#booking-success-msg.show {
+  display: block;
+  animation: slideInDown 0.3s ease;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
