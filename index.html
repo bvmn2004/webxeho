@@ -199,6 +199,7 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
       <!-- Center section: Menu -->
       <nav class="hidden md:flex md:flex-grow justify-center">
         <ul class="flex justify-center space-x-4 text-white">
+          <li><a href="#quick-booking" class="hover:text-secondary font-bold">Đặt Tài Xế Nhanh</a></li>
           <li><a href="#home" class="hover:text-secondary font-bold">Trang Chủ</a></li>
           <li><a href="#aboutus" class="hover:text-secondary font-bold">Giới Thiệu</a></li>
           <li><a href="#results" class="hover:text-secondary font-bold">Thành Tựu</a></li>
@@ -211,8 +212,8 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
 
       <!-- Right section: Buttons (for desktop) -->
       <div class="hidden lg:flex items-center space-x-4">
-        <a href="https://www.facebook.com/profile.php?id=61583832241506"
-          class="bg-secondary hover:bg-primary text-white font-semibold px-4 py-2 rounded inline-block">Facebook</a>
+        <a href="#quick-booking"
+          class="bg-secondary hover:bg-primary text-white font-semibold px-4 py-2 rounded inline-block">Đặt Nhanh</a>
         <a href="https://zalo.me/0985666044"
           class="bg-primary hover:bg-secondary text-white font-semibold px-4 py-2 rounded inline-block">Zalo</a>
       </div>
@@ -221,6 +222,7 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
   <!-- Mobile menu -->
   <nav id="mobile-menu-placeholder" class="mobile-menu hidden items-center space-y-8 md:hidden">
     <ul>
+      <li><a href="#quick-booking" class="hover:text-secondary font-bold">Đặt Tài Xế Nhanh</a></li>
       <li><a href="#home" class="hover:text-secondary font-bold">Trang Chủ</a></li>
       <li><a href="#aboutus" class="hover:text-secondary font-bold">Giới Thiệu</a></li>
       <li><a href="#results" class="hover:text-secondary font-bold">Thành Tựu</a></li>
@@ -230,36 +232,13 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
       <li><a href="#contact" class="hover:text-secondary font-bold">Liên Hệ</a></li>
     </ul>
     <div class="flex flex-col mt-6 space-y-2 items-center">
-      <a href="https://www.facebook.com/profile.php?id=61583832241506"
-        class="bg-secondary hover:bg-primary text-white font-semibold px-4 py-2 rounded flex items-center justify-center min-w-[110px]">Facebook</a>
+      <a href="#quick-booking"
+        class="bg-secondary hover:bg-primary text-white font-semibold px-4 py-2 rounded flex items-center justify-center min-w-[110px]">Đặt
+        Nhanh</a>
       <a href="https://zalo.me/0985666044"
         class="bg-primary hover:bg-secondary text-white font-semibold px-4 py-2 rounded flex items-center justify-center min-w-[110px]">Zalo</a>
     </div>
   </nav>
-
-  <section id="home" class="bg-white py-16">
-    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
-      <!-- Left column: Description and buttons -->
-      <div class="md:w-1/2 text-center md:text-left mb-8 md:mb-0">
-        <h1 class="text-5xl font-bold mb-4">Lái Xe Hộ<span class="text-primary"> Đà Nẵng</span> <span
-            class="text-gray-light">- Như Ý Driver</span></h1>
-        <p class="my-7">Như Ý Driver – nhận lái xe hộ chuyên nghiệp, an toàn, nhanh chóng tại Đà Nẵng. Hỗ trợ 24/7, tài
-          xế kinh nghiệm, tận tâm và luôn đúng giờ. Gọi là có mặt chỉ sau vài phút.</p>
-        <div class="space-x-2">
-          <a href="https://www.facebook.com/profile.php?id=61583832241506"
-            class="bg-secondary hover:bg-primary text-white font-semibold px-4 py-2 rounded inline-block">Facebook</a>
-          <a href="https://zalo.me/0985666044"
-            class="bg-primary hover:bg-secondary text-white font-semibold px-4 py-2 rounded inline-block">Zalo</a>
-        </div>
-      </div>
-
-      <!-- Right column: Responsive image -->
-      <div class="md:w-1/2">
-        <img src="assets/images/1.png" alt="Dịch vụ lái xe hộ Đà Nẵng - Như Ý Driver"
-          class="w-full md:mx-auto md:max-w-md" />
-      </div>
-    </div>
-  </section>
 
   <!-- Quick Booking Section -->
   <section id="quick-booking" class="bg-white py-16">
@@ -280,7 +259,7 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
           <form id="quick-booking-form" class="space-y-4">
 
             <!-- Pickup Location -->
-            <div class="booking-field-group">
+            <div class="booking-field-group booking-full-row">
               <label class="block text-sm font-semibold text-gray-dark mb-2">Điểm Đón</label>
               <div class="booking-action-row">
                 <button type="button" id="pickup-locate-btn" class="booking-action-btn booking-locate-btn">Định
@@ -296,7 +275,7 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
             </div>
 
             <!-- Dropoff Location -->
-            <div class="booking-field-group">
+            <div class="booking-field-group booking-full-row">
               <label class="block text-sm font-semibold text-gray-dark mb-2">Điểm Đến</label>
               <div class="booking-action-row">
                 <button type="button" id="dropoff-map-btn" class="booking-action-btn">Bản đồ</button>
@@ -325,6 +304,14 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
                 pattern="[0-9]{10}" required>
             </div>
 
+            <!-- Travel Time -->
+            <div>
+              <label class="block text-sm font-semibold text-gray-dark mb-2">Thời Gian Đi</label>
+              <input type="datetime-local" id="customer-travel-time"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                required>
+            </div>
+
             <!-- Email -->
             <div>
               <label class="block text-sm font-semibold text-gray-dark mb-2">Email</label>
@@ -334,14 +321,14 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
             </div>
 
             <!-- Notes -->
-            <div>
+            <div class="booking-full-row">
               <label class="block text-sm font-semibold text-gray-dark mb-2">Ghi Chú (Tùy Chọn)</label>
               <textarea id="customer-notes" placeholder="VD: Loại xe, biển số, yêu cầu đặc biệt ..."
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent h-20 resize-none"></textarea>
             </div>
 
             <!-- Price & Distance Info Box -->
-            <div class="bg-white p-4 rounded-lg border-l-4 border-primary">
+            <div class="bg-white p-4 rounded-lg border-l-4 border-primary booking-full-row">
               <div class="grid grid-cols-2 gap-4 text-center">
                 <div>
                   <p class="text-sm text-gray-dark">Quãng Đường</p>
@@ -370,10 +357,12 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
             </p>
 
             <!-- Error Message Box -->
-            <div id="booking-error-msg" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded hidden">
+            <div id="booking-error-msg"
+              class="booking-full-row bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded hidden">
             </div>
             <div id="booking-success-msg"
-              class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded hidden"></div>
+              class="booking-full-row bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded hidden">
+            </div>
 
           </form>
         </div>
@@ -383,6 +372,56 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
           <div id="booking-map" class="booking-map-inner bg-gray-200"></div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <div id="booking-map-modal" class="booking-map-modal hidden" role="dialog" aria-modal="true"
+    aria-labelledby="booking-map-modal-title">
+    <div class="booking-map-modal-backdrop" data-close-modal="true"></div>
+    <div class="booking-map-modal-content">
+      <div class="booking-map-modal-header">
+        <h3 id="booking-map-modal-title" class="booking-map-modal-title">Chọn vị trí trên bản đồ</h3>
+      </div>
+
+      <div class="booking-map-modal-search-wrap">
+        <input type="text" id="modal-map-search" class="booking-map-modal-search"
+          placeholder="Nhập địa chỉ, địa danh, số nhà...">
+        <div id="modal-map-suggestions" class="booking-map-suggestions hidden"></div>
+      </div>
+
+      <div id="booking-map-modal-canvas" class="booking-map-modal-canvas"></div>
+
+      <div class="booking-map-modal-actions">
+        <button type="button" id="modal-map-cancel"
+          class="booking-map-modal-btn booking-map-modal-btn-cancel">Hủy</button>
+        <button type="button" id="modal-map-confirm" class="booking-map-modal-btn booking-map-modal-btn-confirm">Xác
+          nhận</button>
+      </div>
+    </div>
+  </div>
+
+  <section id="home" class="bg-white py-16">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+      <!-- Left column: Description and buttons -->
+      <div class="md:w-1/2 text-center md:text-left mb-8 md:mb-0">
+        <h1 class="text-5xl font-bold mb-4">Lái Xe Hộ<span class="text-primary"> Đà Nẵng</span> <span
+            class="text-gray-light">- Như Ý Driver</span></h1>
+        <p class="my-7">Như Ý Driver – nhận lái xe hộ chuyên nghiệp, an toàn, nhanh chóng tại Đà Nẵng. Hỗ trợ 24/7, tài
+          xế kinh nghiệm, tận tâm và luôn đúng giờ. Gọi là có mặt chỉ sau vài phút.</p>
+        <div class="space-x-2">
+          <a href="#quick-booking"
+            class="bg-secondary hover:bg-primary text-white font-semibold px-4 py-2 rounded inline-block">Đặt Tài Xế
+            Nhanh</a>
+          <a href="https://zalo.me/0985666044"
+            class="bg-primary hover:bg-secondary text-white font-semibold px-4 py-2 rounded inline-block">Zalo</a>
+        </div>
+      </div>
+
+      <!-- Right column: Responsive image -->
+      <div class="md:w-1/2">
+        <img src="assets/images/1.png" alt="Dịch vụ lái xe hộ Đà Nẵng - Như Ý Driver"
+          class="w-full md:mx-auto md:max-w-md" />
       </div>
     </div>
   </section>
@@ -729,8 +768,8 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
                 d="M434.146 59.882H44.912C20.146 59.882 0 80.028 0 104.794v269.47c0 24.766 20.146 44.912 44.912 44.912h389.234c24.766 0 44.912-20.146 44.912-44.912v-269.47c0-24.766-20.146-44.912-44.912-44.912zm0 29.941c2.034 0 3.969.422 5.738 1.159L239.529 264.631 39.173 90.982a14.902 14.902 0 0 1 5.738-1.159zm0 299.411H44.912c-8.26 0-14.971-6.71-14.971-14.971V122.615l199.778 173.141c2.822 2.441 6.316 3.655 9.81 3.655s6.988-1.213 9.81-3.655l199.778-173.141v251.649c-.001 8.26-6.711 14.97-14.971 14.97z"
                 data-original="#006BFD" />
             </svg>
-            <a href="mailto:trannhuy4781@gmail.com" class="text-current text-sm ml-3">
-              <strong>trannhuy4781@gmail.com</strong>
+            <a href="mailto:laixehodanangnhuydriver@gmail.com" class="text-current text-sm ml-3">
+              <strong>laixehodanangnhuydriver@gmail.com</strong>
             </a>
           </li>
           <li class="flex items-center text-current hover:text-blue-500">
@@ -775,8 +814,8 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
           </li>
           <li>
             Email:
-            <a href="mailto:trannhuy4781@gmail.com" class="text-blue-400 hover:text-blue-300 font-bold">
-              trannhuy4781@gmail.com
+            <a href="mailto:laixehodanangnhuydriver@gmail.com" class="text-blue-400 hover:text-blue-300 font-bold">
+              laixehodanangnhuydriver@gmail.com
             </a>
           </li>
         </ul>

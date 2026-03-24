@@ -3,12 +3,18 @@
 class QuickBooking {
     constructor() {
         // VietMap configuration (replace key in production)
-        this.VIETMAP_API_KEY = '53ec8c719c14153d869267e0d128744358409b741db32847';
-        this.VIETMAP_STYLE_URL = `https://maps.vietmap.vn/maps/styles/tm/style.json?apikey=${this.VIETMAP_API_KEY}`;
+        this.VIETMAP_TILE_KEY = '3f8a731ea623af779ef30acd8097e199a556ab3905abf141';
+        this.VIETMAP_SERVICES_KEY = '53ec8c719c14153d869267e0d128744358409b741db32847';
+        this.VIETMAP_STYLE_URL = `https://maps.vietmap.vn/maps/styles/tm/style.json?apikey=${this.VIETMAP_TILE_KEY}`;
         this.VIETMAP_AUTOCOMPLETE_URL = 'https://maps.vietmap.vn/api/autocomplete/v4';
         this.VIETMAP_PLACE_URL = 'https://maps.vietmap.vn/api/place/v4';
         this.VIETMAP_REVERSE_URL = 'https://maps.vietmap.vn/api/reverse/v4';
         this.VIETMAP_ROUTE_URL = 'https://maps.vietmap.vn/api/route/v3';
+
+        this.EMAILJS_SERVICE_ID = 'service_1cwk8gu';
+        this.EMAILJS_PUBLIC_KEY = 'FelIR87iDLCKdybMB';
+        this.EMAILJS_BOOKING_TEMPLATE_ID = 'template_xa0eh55';
+        this.EMAILJS_AUTOREPLY_TEMPLATE_ID = 'template_zsif1bu';
 
         this.mapCenter = { lat: 16.0544, lng: 108.2022 }; // Da Nang
         this.pickupCoords = null;
@@ -28,6 +34,7 @@ class QuickBooking {
         this.pickupLocateBtn = document.getElementById('pickup-locate-btn');
         this.pickupMapBtn = document.getElementById('pickup-map-btn');
         this.dropoffMapBtn = document.getElementById('dropoff-map-btn');
+        this.travelTimeInput = document.getElementById('customer-travel-time');
 
         this.distanceDisplay = document.getElementById('distance-display');
         this.durationDisplay = document.getElementById('duration-display');
@@ -38,10 +45,24 @@ class QuickBooking {
         this.errorMsg = document.getElementById('booking-error-msg');
         this.successMsg = document.getElementById('booking-success-msg');
 
+        this.mapModal = document.getElementById('booking-map-modal');
+        this.mapModalTitle = document.getElementById('booking-map-modal-title');
+        this.mapModalSearchInput = document.getElementById('modal-map-search');
+        this.mapModalSuggestions = document.getElementById('modal-map-suggestions');
+        this.mapModalCancelBtn = document.getElementById('modal-map-cancel');
+        this.mapModalConfirmBtn = document.getElementById('modal-map-confirm');
+
         this.markers = {};
+        this.modalMap = null;
+        this.modalMarker = null;
+        this.modalSelectionTarget = 'pickup';
+        this.modalPendingLocation = null;
+        this.modalSearchDebounce = null;
 
         this.initMap();
+        this.initTravelTimeField();
         this.initAutocomplete();
+        this.initMapPickerModal();
         this.initMapButtons();
         this.initFormSubmit();
     }
@@ -102,15 +123,13 @@ class QuickBooking {
     initMapButtons() {
         if (this.pickupMapBtn) {
             this.pickupMapBtn.addEventListener('click', () => {
-                this.setActiveMapTarget('pickup');
-                this.showSuccess('Đã bật chọn Điểm Đón trên bản đồ. Hãy bấm vào vị trí cần đón.');
+                this.openMapPickerModal('pickup');
             });
         }
 
         if (this.dropoffMapBtn) {
             this.dropoffMapBtn.addEventListener('click', () => {
-                this.setActiveMapTarget('dropoff');
-                this.showSuccess('Đã bật chọn Điểm Đến trên bản đồ. Hãy bấm vào vị trí cần trả.');
+                this.openMapPickerModal('dropoff');
             });
         }
 
@@ -119,6 +138,246 @@ class QuickBooking {
         }
 
         this.setActiveMapTarget('pickup');
+    }
+
+    initTravelTimeField(shouldSetValue = true) {
+        if (!this.travelTimeInput) {
+            return;
+        }
+
+        const minDate = new Date();
+        minDate.setMinutes(minDate.getMinutes() + 5, 0, 0);
+        const minValue = this.toDateTimeLocalValue(minDate);
+
+        this.travelTimeInput.min = minValue;
+
+        if (shouldSetValue && (!this.travelTimeInput.value || this.travelTimeInput.value < minValue)) {
+            this.travelTimeInput.value = minValue;
+        }
+
+        if (!this.travelTimeInput.dataset.boundMinUpdater) {
+            this.travelTimeInput.addEventListener('focus', () => this.initTravelTimeField(false));
+            this.travelTimeInput.dataset.boundMinUpdater = '1';
+        }
+    }
+
+    toDateTimeLocalValue(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        return `${year}-${month}-${day}T${hours}:${minutes}`;
+    }
+
+    formatTravelTime(value) {
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) {
+            return value;
+        }
+        return date.toLocaleString('vi-VN');
+    }
+
+    initMapPickerModal() {
+        if (!this.mapModal || !this.mapModalSearchInput || !this.mapModalSuggestions) {
+            return;
+        }
+
+        this.mapModalCancelBtn?.addEventListener('click', () => this.closeMapPickerModal());
+        this.mapModalConfirmBtn?.addEventListener('click', () => this.confirmMapPickerSelection());
+
+        this.mapModal.addEventListener('click', (e) => {
+            if (e.target?.dataset?.closeModal === 'true') {
+                this.closeMapPickerModal();
+            }
+        });
+
+        this.mapModalSearchInput.addEventListener('input', (e) => {
+            clearTimeout(this.modalSearchDebounce);
+            const query = e.target.value.trim();
+
+            if (query.length < 2) {
+                this.mapModalSuggestions.classList.add('hidden');
+                return;
+            }
+
+            this.modalSearchDebounce = setTimeout(() => {
+                this.fetchModalSuggestions(query);
+            }, 280);
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.booking-map-modal-search-wrap')) {
+                this.mapModalSuggestions.classList.add('hidden');
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.mapModal && !this.mapModal.classList.contains('hidden')) {
+                this.closeMapPickerModal();
+            }
+        });
+    }
+
+    ensureModalMap() {
+        if (this.modalMap) {
+            return;
+        }
+
+        this.modalMap = new vietmapgl.Map({
+            container: 'booking-map-modal-canvas',
+            style: this.VIETMAP_STYLE_URL,
+            center: [this.mapCenter.lng, this.mapCenter.lat],
+            zoom: 13,
+            minZoom: 10,
+            maxZoom: 18,
+        });
+
+        this.modalMap.addControl(new vietmapgl.NavigationControl({ showCompass: true }), 'top-right');
+
+        this.modalMap.on('click', async (e) => {
+            const lng = e.lngLat.lng;
+            const lat = e.lngLat.lat;
+            const address = await this.reverseGeocode(lat, lng);
+            this.setModalPendingLocation(lat, lng, address, false);
+        });
+    }
+
+    openMapPickerModal(target) {
+        if (!this.mapModal) {
+            return;
+        }
+
+        this.modalSelectionTarget = target;
+        this.mapModalTitle.textContent = target === 'pickup' ? 'Chọn điểm đón trên bản đồ' : 'Chọn điểm đến trên bản đồ';
+
+        this.mapModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+
+        this.ensureModalMap();
+
+        const currentLocation = target === 'pickup' ? this.pickupCoords : this.dropoffCoords;
+        if (currentLocation) {
+            this.setModalPendingLocation(currentLocation.lat, currentLocation.lng, currentLocation.address, true);
+        } else {
+            this.modalPendingLocation = null;
+            this.mapModalSearchInput.value = '';
+            this.mapModalSuggestions.classList.add('hidden');
+
+            if (this.modalMarker) {
+                this.modalMarker.remove();
+                this.modalMarker = null;
+            }
+            this.modalMap.flyTo({ center: [this.mapCenter.lng, this.mapCenter.lat], zoom: 13 });
+        }
+
+        requestAnimationFrame(() => {
+            this.modalMap.resize();
+            if (this.modalPendingLocation) {
+                this.modalMap.flyTo({
+                    center: [this.modalPendingLocation.lng, this.modalPendingLocation.lat],
+                    zoom: 15,
+                });
+            }
+        });
+    }
+
+    closeMapPickerModal() {
+        if (!this.mapModal) {
+            return;
+        }
+        this.mapModal.classList.add('hidden');
+        this.mapModalSuggestions?.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    async fetchModalSuggestions(query) {
+        try {
+            const response = await axios.get(this.VIETMAP_AUTOCOMPLETE_URL, {
+                params: {
+                    apikey: this.VIETMAP_SERVICES_KEY,
+                    text: query,
+                    focus: `${this.mapCenter.lat},${this.mapCenter.lng}`,
+                    display_type: 5,
+                },
+            });
+
+            const suggestions = Array.isArray(response.data) ? response.data : [];
+            this.renderModalSuggestions(suggestions);
+        } catch (error) {
+            console.error('Lỗi autocomplete modal VietMap:', error);
+            this.showError('Không thể gợi ý địa chỉ trong popup. Vui lòng thử lại.');
+        }
+    }
+
+    renderModalSuggestions(suggestions) {
+        if (!this.mapModalSuggestions) {
+            return;
+        }
+
+        this.mapModalSuggestions.innerHTML = '';
+
+        if (!suggestions.length) {
+            this.mapModalSuggestions.innerHTML = '<div class="suggestion-item text-gray-500">Không tìm thấy kết quả</div>';
+            this.mapModalSuggestions.classList.remove('hidden');
+            return;
+        }
+
+        suggestions.slice(0, 10).forEach((item) => {
+            const div = document.createElement('div');
+            div.className = 'suggestion-item';
+            div.textContent = item.display || `${item.name || ''} ${item.address || ''}`.trim() || 'Địa chỉ không xác định';
+
+            div.addEventListener('click', async () => {
+                const place = await this.fetchPlaceDetail(item.ref_id);
+                if (!place) {
+                    this.showError('Không lấy được chi tiết địa điểm. Vui lòng chọn lại.');
+                    return;
+                }
+                this.setModalPendingLocation(place.lat, place.lng, place.address, true);
+            });
+
+            this.mapModalSuggestions.appendChild(div);
+        });
+
+        this.mapModalSuggestions.classList.remove('hidden');
+    }
+
+    setModalPendingLocation(lat, lng, address, flyToMap) {
+        this.modalPendingLocation = { lat, lng, address };
+        this.mapModalSearchInput.value = address;
+        this.mapModalSuggestions.classList.add('hidden');
+
+        if (this.modalMarker) {
+            this.modalMarker.remove();
+        }
+
+        this.modalMarker = new vietmapgl.Marker({ color: this.modalSelectionTarget === 'pickup' ? '#006BFD' : '#ea47ed' })
+            .setLngLat([lng, lat])
+            .addTo(this.modalMap);
+
+        if (flyToMap) {
+            this.modalMap.flyTo({ center: [lng, lat], zoom: 15 });
+        }
+    }
+
+    confirmMapPickerSelection() {
+        if (!this.modalPendingLocation) {
+            this.showError('Vui lòng chọn vị trí trên bản đồ hoặc từ ô tìm kiếm.');
+            return;
+        }
+
+        const selected = this.modalPendingLocation;
+        const target = this.modalSelectionTarget;
+
+        if (target === 'pickup') {
+            this.pickupInput.value = selected.address;
+        } else {
+            this.dropoffInput.value = selected.address;
+        }
+
+        this.setLocation(target, selected.lat, selected.lng, selected.address);
+        this.closeMapPickerModal();
     }
 
     setActiveMapTarget(target) {
@@ -201,7 +460,7 @@ class QuickBooking {
         try {
             const response = await axios.get(this.VIETMAP_AUTOCOMPLETE_URL, {
                 params: {
-                    apikey: this.VIETMAP_API_KEY,
+                    apikey: this.VIETMAP_SERVICES_KEY,
                     text: query,
                     focus: `${this.mapCenter.lat},${this.mapCenter.lng}`,
                     display_type: 5,
@@ -264,7 +523,7 @@ class QuickBooking {
         try {
             const response = await axios.get(this.VIETMAP_PLACE_URL, {
                 params: {
-                    apikey: this.VIETMAP_API_KEY,
+                    apikey: this.VIETMAP_SERVICES_KEY,
                     refid,
                 },
             });
@@ -291,7 +550,7 @@ class QuickBooking {
         try {
             const response = await axios.get(this.VIETMAP_REVERSE_URL, {
                 params: {
-                    apikey: this.VIETMAP_API_KEY,
+                    apikey: this.VIETMAP_SERVICES_KEY,
                     lat,
                     lng,
                     display_type: 5,
@@ -363,13 +622,14 @@ class QuickBooking {
 
         try {
             const query = new URLSearchParams();
-            query.append('apikey', this.VIETMAP_API_KEY);
+            query.append('apikey', this.VIETMAP_SERVICES_KEY);
             query.append('point', `${this.pickupCoords.lat},${this.pickupCoords.lng}`);
             query.append('point', `${this.dropoffCoords.lat},${this.dropoffCoords.lng}`);
             query.append('vehicle', 'car');
             query.append('points_encoded', 'false');
 
             const response = await axios.get(`${this.VIETMAP_ROUTE_URL}?${query.toString()}`);
+            console.log('VietMap route response JSON:', response.data);
 
             const route = response.data?.paths?.[0];
             if (!route) {
@@ -377,10 +637,19 @@ class QuickBooking {
                 return;
             }
 
-            this.distanceKm = (route.distance / 1000).toFixed(2);
-            this.durationMinutes = Math.ceil(route.time / 60000);
+            const distanceMeters = this.extractDistanceMeters(route);
+            const durationSeconds = this.extractDurationSeconds(route);
+            const coordinates = this.extractRouteCoordinates(route);
 
-            this.drawRoute(route.points, route.points_encoded);
+            if (distanceMeters == null || durationSeconds == null) {
+                this.showError('Không đọc được dữ liệu quãng đường/thời gian từ VietMap.');
+                return;
+            }
+
+            this.distanceKm = (distanceMeters / 1000).toFixed(2);
+            this.durationMinutes = Math.ceil(durationSeconds / 60);
+
+            this.drawRoute(coordinates);
             this.updatePriceDisplay();
             this.clearError();
         } catch (error) {
@@ -392,37 +661,146 @@ class QuickBooking {
         }
     }
 
-    normalizeRoutePoints(points) {
-        if (!Array.isArray(points)) {
-            return [];
+    extractDistanceMeters(route) {
+        if (typeof route?.distance === 'number' && Number.isFinite(route.distance)) {
+            return route.distance;
         }
-
-        return points
-            .filter((p) => Array.isArray(p) && p.length >= 2)
-            .map((p) => {
-                const a = Number(p[0]);
-                const b = Number(p[1]);
-
-                // VietMap docs mention [lat,lng] when points_encoded=false.
-                // Convert safely to [lng,lat] for map rendering.
-                if (Math.abs(a) <= 90 && Math.abs(b) <= 180) {
-                    return [b, a];
-                }
-
-                return [a, b];
-            });
+        if (typeof route?.distance_m === 'number' && Number.isFinite(route.distance_m)) {
+            return route.distance_m;
+        }
+        if (typeof route?.distance_km === 'number' && Number.isFinite(route.distance_km)) {
+            return route.distance_km * 1000;
+        }
+        if (typeof route?.summary?.distance === 'number' && Number.isFinite(route.summary.distance)) {
+            return route.summary.distance;
+        }
+        return null;
     }
 
-    drawRoute(points, pointsEncoded) {
-        let coordinates = [];
+    extractDurationSeconds(route) {
+        const rawTime =
+            typeof route?.time === 'number' && Number.isFinite(route.time)
+                ? route.time
+                : typeof route?.duration === 'number' && Number.isFinite(route.duration)
+                    ? route.duration
+                    : typeof route?.summary?.time === 'number' && Number.isFinite(route.summary.time)
+                        ? route.summary.time
+                        : null;
 
-        if (pointsEncoded) {
-            coordinates = [];
-        } else {
-            coordinates = this.normalizeRoutePoints(points);
+        if (rawTime == null) {
+            return null;
         }
 
+        // Most routing APIs return milliseconds or seconds; convert both safely to seconds.
+        return rawTime > 100000 ? rawTime / 1000 : rawTime;
+    }
+
+    normalizeCoordinatePair(pair) {
+        if (!Array.isArray(pair) || pair.length < 2) {
+            return null;
+        }
+
+        const first = Number(pair[0]);
+        const second = Number(pair[1]);
+        if (!Number.isFinite(first) || !Number.isFinite(second)) {
+            return null;
+        }
+
+        // [lat,lng] -> [lng,lat]
+        if (Math.abs(first) <= 90 && Math.abs(second) <= 180) {
+            return [second, first];
+        }
+
+        // [lng,lat]
+        if (Math.abs(first) <= 180 && Math.abs(second) <= 90) {
+            return [first, second];
+        }
+
+        return null;
+    }
+
+    decodePolyline(encoded, precision = 5) {
+        const coordinates = [];
+        let index = 0;
+        let lat = 0;
+        let lng = 0;
+        const factor = Math.pow(10, precision);
+
+        while (index < encoded.length) {
+            let result = 0;
+            let shift = 0;
+            let byte;
+
+            do {
+                byte = encoded.charCodeAt(index++) - 63;
+                result |= (byte & 0x1f) << shift;
+                shift += 5;
+            } while (byte >= 0x20);
+
+            const dLat = (result & 1) ? ~(result >> 1) : (result >> 1);
+            lat += dLat;
+
+            result = 0;
+            shift = 0;
+
+            do {
+                byte = encoded.charCodeAt(index++) - 63;
+                result |= (byte & 0x1f) << shift;
+                shift += 5;
+            } while (byte >= 0x20);
+
+            const dLng = (result & 1) ? ~(result >> 1) : (result >> 1);
+            lng += dLng;
+
+            coordinates.push([lng / factor, lat / factor]);
+        }
+
+        return coordinates;
+    }
+
+    extractRouteCoordinates(route) {
+        const pointsEncoded = route?.points_encoded === true;
+
+        if (pointsEncoded) {
+            const encoded =
+                typeof route?.points === 'string'
+                    ? route.points
+                    : typeof route?.geometry === 'string'
+                        ? route.geometry
+                        : null;
+
+            if (!encoded) {
+                return [];
+            }
+
+            try {
+                return this.decodePolyline(encoded);
+            } catch (error) {
+                console.error('Không decode được polyline encoded:', error);
+                return [];
+            }
+        }
+
+        const rawCoordinates =
+            Array.isArray(route?.points)
+                ? route.points
+                : Array.isArray(route?.points?.coordinates)
+                    ? route.points.coordinates
+                    : Array.isArray(route?.geometry?.coordinates)
+                        ? route.geometry.coordinates
+                        : Array.isArray(route?.geometry)
+                            ? route.geometry
+                            : [];
+
+        return rawCoordinates
+            .map((pair) => this.normalizeCoordinatePair(pair))
+            .filter((pair) => Array.isArray(pair));
+    }
+
+    drawRoute(coordinates) {
+
         if (!coordinates.length) {
+            console.warn('Không có coordinates để vẽ route.');
             return;
         }
 
@@ -468,7 +846,7 @@ class QuickBooking {
         }
 
         if (price === null) {
-            this.priceDisplay.textContent = 'Vui lòng liên hệ 0985 666 044';
+            this.priceDisplay.textContent = 'Trên 30km: vui lòng liên hệ hotline 0985 666 044 để được tư vấn và báo giá phù hợp.';
             this.priceDisplay.classList.add('price-contact-note');
             this.priceDisplay.classList.add('text-gray-dark');
             this.priceDisplay.classList.remove('text-secondary');
@@ -515,6 +893,24 @@ class QuickBooking {
             return false;
         }
 
+        this.initTravelTimeField(false);
+        const travelTime = this.travelTimeInput?.value;
+        if (!travelTime) {
+            this.showError('Vui lòng chọn thời gian đi.');
+            return false;
+        }
+
+        const travelDate = new Date(travelTime);
+        if (Number.isNaN(travelDate.getTime())) {
+            this.showError('Thời gian đi không hợp lệ.');
+            return false;
+        }
+
+        if (travelDate.getTime() < Date.now()) {
+            this.showError('Thời gian đi không được ở quá khứ.');
+            return false;
+        }
+
         return true;
     }
 
@@ -535,49 +931,59 @@ class QuickBooking {
             const formData = {
                 pickup_address: this.pickupInput.value,
                 dropoff_address: this.dropoffInput.value,
-                distance_text: distanceText,
-                duration_text: durationText,
+                distance: distanceText,
+                duration: durationText,
                 estimated_price: this.priceDisplay.textContent,
                 customer_name: document.getElementById('customer-name').value,
                 customer_phone: document.getElementById('customer-phone').value,
                 customer_email: document.getElementById('customer-email').value,
-                customer_notes: document.getElementById('customer-notes').value,
+                departure_time: this.travelTimeInput?.value || '',
+                notes: document.getElementById('customer-notes').value,
                 booking_time: new Date().toLocaleString('vi-VN'),
             };
 
-            // Reuse the same EmailJS flow as contact form: admin email + auto-reply.
-            await emailjs.send('service_l0mto1g', 'template_v5zt6rp', {
-                // Booking fields required by business flow
+            const travelTimeDisplay = this.formatTravelTime(formData.departure_time);
+
+            await emailjs.send(this.EMAILJS_SERVICE_ID, this.EMAILJS_BOOKING_TEMPLATE_ID, {
                 pickup_address: formData.pickup_address,
                 dropoff_address: formData.dropoff_address,
                 customer_name: formData.customer_name,
                 customer_phone: formData.customer_phone,
                 customer_email: formData.customer_email,
-                customer_notes: formData.customer_notes,
-                distance_text: formData.distance_text,
-                duration_text: formData.duration_text,
+                departure_time: formData.departure_time,
+                notes: formData.notes,
+                distance: formData.distance,
+                duration: formData.duration,
                 estimated_price: formData.estimated_price,
 
-                // Keep contact-template compatibility
+                // Backward-compatible aliases for existing template placeholders
+                customer_travel_time: formData.departure_time,
+                customer_notes: formData.notes,
+                distance_text: formData.distance,
+                duration_text: formData.duration,
+                travel_time: formData.departure_time,
+
                 name: formData.customer_name,
                 phone: formData.customer_phone,
                 email: formData.customer_email,
                 message:
                     `Điểm đón: ${formData.pickup_address}\n` +
                     `Điểm đến: ${formData.dropoff_address}\n` +
-                    `Quãng đường: ${formData.distance_text}\n` +
-                    `Thời gian: ${formData.duration_text}\n` +
+                    `Thời gian đi: ${travelTimeDisplay}\n` +
+                    `Quãng đường: ${formData.distance}\n` +
+                    `Thời gian: ${formData.duration}\n` +
                     `Giá tạm tính: ${formData.estimated_price}\n` +
-                    `Ghi chú: ${formData.customer_notes || 'Không có'}`,
+                    `Ghi chú: ${formData.notes || 'Không có'}`,
                 time: formData.booking_time,
                 booking_time: formData.booking_time,
-            });
+            }, this.EMAILJS_PUBLIC_KEY);
 
-            await emailjs.send('service_l0mto1g', 'template_hdn720u', {
+            await emailjs.send(this.EMAILJS_SERVICE_ID, this.EMAILJS_AUTOREPLY_TEMPLATE_ID, {
                 name: formData.customer_name,
                 email: formData.customer_email,
-                message: 'Đã nhận yêu cầu đặt tài xế. Điều phối viên sẽ liên hệ bạn trong vòng 5 phút.',
-            });
+                departure_time: formData.departure_time,
+                message: `Đã nhận yêu cầu đặt tài xế cho thời gian ${travelTimeDisplay}. Điều phối viên sẽ liên hệ bạn trong vòng 5 phút.`,
+            }, this.EMAILJS_PUBLIC_KEY);
 
             this.showSuccess(
                 `Yêu cầu thành công! Điều phối viên sẽ liên hệ bạn trong vòng 5 phút.\n` +
@@ -618,6 +1024,7 @@ class QuickBooking {
 
         this.map.flyTo({ center: [this.mapCenter.lng, this.mapCenter.lat], zoom: 13 });
         this.setActiveMapTarget('pickup');
+        this.initTravelTimeField();
     }
 
     showError(message) {
