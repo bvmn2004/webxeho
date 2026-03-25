@@ -58,6 +58,7 @@ class QuickBooking {
         this.modalSelectionTarget = 'pickup';
         this.modalPendingLocation = null;
         this.modalSearchDebounce = null;
+        this.travelTimeMinIntervalId = null;
 
         this.initMap();
         this.initTravelTimeField();
@@ -145,9 +146,7 @@ class QuickBooking {
             return;
         }
 
-        const minDate = new Date();
-        minDate.setMinutes(minDate.getMinutes() + 5, 0, 0);
-        const minValue = this.toDateTimeLocalValue(minDate);
+        const minValue = this.getCurrentDateTimeLocalValue();
 
         this.travelTimeInput.min = minValue;
 
@@ -157,8 +156,16 @@ class QuickBooking {
 
         if (!this.travelTimeInput.dataset.boundMinUpdater) {
             this.travelTimeInput.addEventListener('focus', () => this.initTravelTimeField(false));
+            this.travelTimeMinIntervalId = setInterval(() => this.initTravelTimeField(false), 60000);
             this.travelTimeInput.dataset.boundMinUpdater = '1';
         }
+    }
+
+    getCurrentDateTimeLocalValue() {
+        // Convert current time to local datetime-local format (YYYY-MM-DDTHH:mm).
+        const now = new Date();
+        const timezoneOffsetMs = now.getTimezoneOffset() * 60000;
+        return new Date(now.getTime() - timezoneOffsetMs).toISOString().slice(0, 16);
     }
 
     toDateTimeLocalValue(date) {
@@ -906,7 +913,13 @@ class QuickBooking {
             return false;
         }
 
-        if (travelDate.getTime() < Date.now()) {
+        travelDate.setSeconds(0, 0);
+        const now = new Date();
+        now.setSeconds(0, 0);
+
+        if (travelDate < now) {
+            alert('Không được chọn thời gian trong quá khứ!');
+            this.travelTimeInput.value = '';
             this.showError('Thời gian đi không được ở quá khứ.');
             return false;
         }
