@@ -339,8 +339,21 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
                 </div>
               </div>
               <div class="mt-4 pt-4 border-t-2 border-gray-200">
-                <p class="text-sm text-gray-dark">Giá Tạm Tính</p>
+                <p id="price-label" class="text-sm text-gray-dark">Giá Tạm Tính</p>
                 <p id="price-display" class="text-3xl font-bold text-secondary">--</p>
+                <p id="night-surcharge-note" class="text-xs text-gray-dark mt-2 hidden">Phụ thu ban đêm áp dụng từ 23:00
+                  – 05:59 (+50K)</p>
+                <p id="night-surcharge-included-note" class="text-xs text-secondary mt-1 hidden">Giá tạm tính đã bao gồm
+                  phụ thu ban đêm</p>
+                <div id="over-limit-contact" class="hidden text-center mt-4">
+                  <p class="text-red-500 font-semibold mb-2">
+                    Trên 30km: vui lòng liên hệ để nhận báo giá ưu đãi
+                  </p>
+                  <a href="tel:0985666044"
+                    class="inline-block bg-red-500 hover:bg-red-600 text-secondary font-bold px-4 py-2 rounded-lg">
+                    📞 Gọi ngay 0985 666 044
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -429,7 +442,7 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
     <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
       <!-- Left column: Image -->
       <div class="md:w-1/2 mb-8 md:mb-0">
-        <img src="assets/images/2.png" alt="Image" class="w-full md:mx-auto md:max-w-md" />
+        <img src="assets/images/2.jpg" alt="Image" class="w-full md:mx-auto md:max-w-md" />
       </div>
 
       <!-- Right column: Title, description list, and button -->

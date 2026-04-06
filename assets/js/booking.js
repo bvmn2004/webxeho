@@ -38,7 +38,11 @@ class QuickBooking {
 
         this.distanceDisplay = document.getElementById('distance-display');
         this.durationDisplay = document.getElementById('duration-display');
+        this.priceLabel = document.getElementById('price-label');
         this.priceDisplay = document.getElementById('price-display');
+        this.nightSurchargeNote = document.getElementById('night-surcharge-note');
+        this.nightSurchargeIncludedNote = document.getElementById('night-surcharge-included-note');
+        this.overLimitContact = document.getElementById('over-limit-contact');
 
         this.form = document.getElementById('quick-booking-form');
         this.submitBtn = document.getElementById('submit-booking-btn');
@@ -62,10 +66,20 @@ class QuickBooking {
 
         this.initMap();
         this.initTravelTimeField();
+        this.initPricingDependencies();
         this.initAutocomplete();
         this.initMapPickerModal();
         this.initMapButtons();
         this.initFormSubmit();
+    }
+
+    initPricingDependencies() {
+        // Recalculate instantly when travel time changes.
+        this.travelTimeInput?.addEventListener('change', () => {
+            if (this.distanceKm) {
+                this.updatePriceDisplay();
+            }
+        });
     }
 
     // Initialize VietMap GL map
@@ -839,30 +853,82 @@ class QuickBooking {
         this.distanceDisplay.textContent = `${this.distanceKm} km`;
         this.durationDisplay.textContent = `${this.durationMinutes} phút`;
 
-        let price = 0;
         const distance = parseFloat(this.distanceKm);
+        const pricing = this.calculatePrice(distance, this.travelTimeInput?.value);
 
-        if (distance <= 5) {
-            price = 150000;
-        } else if (distance <= 10) {
-            price = 200000;
-        } else if (distance <= 30) {
-            price = 200000 + (distance - 10) * 15000;
-        } else {
-            price = null;
+        if (pricing.isOverLimit) {
+            this.setOverLimitMode(true);
+            this.priceDisplay.textContent = '--';
+            this.nightSurchargeNote?.classList.add('hidden');
+            this.nightSurchargeIncludedNote?.classList.add('hidden');
+            return;
         }
 
-        if (price === null) {
-            this.priceDisplay.textContent = 'Trên 30km: vui lòng liên hệ hotline 0985 666 044 để được tư vấn và báo giá phù hợp.';
-            this.priceDisplay.classList.add('price-contact-note');
-            this.priceDisplay.classList.add('text-gray-dark');
-            this.priceDisplay.classList.remove('text-secondary');
-        } else {
-            this.priceDisplay.textContent = `${Math.round(price).toLocaleString('vi-VN')}đ`;
-            this.priceDisplay.classList.remove('price-contact-note');
-            this.priceDisplay.classList.remove('text-gray-dark');
-            this.priceDisplay.classList.add('text-secondary');
+        this.setOverLimitMode(false);
+        this.priceDisplay.textContent = `${Math.round(pricing.totalPrice).toLocaleString('vi-VN')}đ`;
+        this.priceDisplay.classList.remove('price-contact-note');
+        this.priceDisplay.classList.remove('text-gray-dark');
+        this.priceDisplay.classList.add('text-secondary');
+
+        if (this.nightSurchargeNote) {
+            this.nightSurchargeNote.classList.toggle('hidden', !pricing.isNight);
         }
+
+        if (this.nightSurchargeIncludedNote) {
+            this.nightSurchargeIncludedNote.classList.toggle('hidden', !pricing.isNight);
+        }
+    }
+
+    setOverLimitMode(isOverLimit) {
+        // Switch UI between normal pricing mode and contact-only mode for trips over 30km.
+        this.priceLabel?.classList.toggle('hidden', isOverLimit);
+        this.priceDisplay?.classList.toggle('hidden', isOverLimit);
+        this.overLimitContact?.classList.toggle('hidden', !isOverLimit);
+    }
+
+    isNightSurchargeAppliedByHour(hour) {
+        // Night surcharge window crosses midnight: 23:00 -> 05:59.
+        return hour >= 23 || hour < 6;
+    }
+
+    /**
+     * Calculate booking price by distance and travel time.
+     * @param {number} distance Distance in kilometers.
+     * @param {string|Date} travelTime Datetime of departure.
+     * @returns {{totalPrice: number|null, isOverLimit: boolean, isNight: boolean}}
+     */
+    calculatePrice(distance, travelTime) {
+        const safeDistance = Number.isFinite(distance) && distance > 0 ? distance : 0;
+        const isOverLimit = safeDistance > 30;
+
+        const travelDate = travelTime instanceof Date ? travelTime : new Date(travelTime);
+        const isValidTravelDate = !Number.isNaN(travelDate.getTime());
+        const hour = isValidTravelDate ? travelDate.getHours() : null;
+        const isNight = hour !== null && this.isNightSurchargeAppliedByHour(hour);
+
+        if (isOverLimit) {
+            return {
+                totalPrice: null,
+                isOverLimit: true,
+                isNight,
+            };
+        }
+
+        let basePrice;
+        if (safeDistance < 5) {
+            basePrice = 150000;
+        } else if (safeDistance <= 10) {
+            basePrice = 200000;
+        } else {
+            basePrice = 200000 + (safeDistance - 10) * 15000;
+        }
+        const nightSurcharge = isNight ? 50000 : 0;
+
+        return {
+            totalPrice: basePrice + nightSurcharge,
+            isOverLimit: false,
+            isNight,
+        };
     }
 
     initFormSubmit() {
@@ -1023,6 +1089,9 @@ class QuickBooking {
         this.distanceDisplay.textContent = '--';
         this.durationDisplay.textContent = '--';
         this.priceDisplay.textContent = '--';
+        this.setOverLimitMode(false);
+        this.nightSurchargeNote?.classList.add('hidden');
+        this.nightSurchargeIncludedNote?.classList.add('hidden');
 
         Object.values(this.markers).forEach((marker) => marker.remove());
         this.markers = {};
