@@ -1064,6 +1064,18 @@ class QuickBooking {
                 message: `Đã nhận yêu cầu đặt tài xế cho thời gian ${travelTimeDisplay}. Điều phối viên sẽ liên hệ bạn trong vòng 5 phút.`,
             }, this.EMAILJS_PUBLIC_KEY);
 
+            // ✅ Cả 2 email gửi thành công → kích hoạt Google Ads conversion
+            if (typeof gtag === 'function') {
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-18148925849/knAqCJfnh6wcEJnDis5D'
+                });
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-17783643653/SVzMCJn6lrscEIW8859C',
+                    'value': 1.0,
+                    'currency': 'VND'
+                });
+            }
+
             this.showSuccess(
                 `Yêu cầu thành công! Điều phối viên sẽ liên hệ bạn trong vòng 5 phút.\n` +
                 `Lộ trình: ${this.distanceKm} km | Thời gian: ${this.durationMinutes} phút`

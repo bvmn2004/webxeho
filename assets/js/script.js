@@ -141,6 +141,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             })
             .then(() => {
+                // ✅ Gửi cả 2 email thành công → kích hoạt Google Ads conversion
+                if (typeof gtag === 'function') {
+                    gtag('event', 'conversion', {
+                        'send_to': 'AW-18148925849/knAqCJfnh6wcEJnDis5D'
+                    });
+                    gtag('event', 'conversion', {
+                        'send_to': 'AW-17783643653/SVzMCJn6lrscEIW8859C',
+                        'value': 1.0,
+                        'currency': 'VND'
+                    });
+                }
                 alert("Gửi thành công! Vui lòng kiểm tra email của bạn.");
                 form.reset();
             })

@@ -106,18 +106,17 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
   </script>
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17783643653">
-  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18148925849"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
+    gtag('config', 'AW-18148925849');
     gtag('config', 'AW-17783643653');
   </script>
 
-  <!-- Event snippet for Người liên hệ conversion page
-  In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+  <!-- Conversion snippet: Gọi khi click Zalo/Phone trực tiếp -->
   <script>
     function gtag_report_conversion(url) {
       var callback = function () {
@@ -125,14 +124,20 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
           window.location = url;
         }
       };
+      // Tài khoản 1: có event_callback để điều hướng sau khi conversion ghi nhận
       gtag('event', 'conversion', {
-        'send_to': 'AW-17783643653/awXNCKranM0bEIW8859C',
+        'send_to': 'AW-18148925849/knAqCJfnh6wcEJnDis5D',
         'event_callback': callback
+      });
+      // Tài khoản 2: thêm value + currency theo snippet Google Ads cấp
+      gtag('event', 'conversion', {
+        'send_to': 'AW-17783643653/SVzMCJn6lrscEIW8859C',
+        'value': 1.0,
+        'currency': 'VND'
       });
       return false;
     }
   </script>
-
 
 
 </head>
