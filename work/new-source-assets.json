@@ -1,0 +1,56 @@
+{
+  "30_": {
+    "src": "C:\\Users\\admin\\OneDrive\\Pictures\\card\\ảnh làm web\\30_Lai_Xe_Ho_Hai_Chau_Da_Nang.png",
+    "output": "assets/images/website/30_Lai_Xe_Ho_Hai_Chau_Da_Nang.webp",
+    "size": [
+      1200,
+      800
+    ],
+    "bytes": 141664
+  },
+  "31_": {
+    "src": "C:\\Users\\admin\\OneDrive\\Pictures\\card\\ảnh làm web\\31_Lai_Xe_Ho_Son_Tra_Da_Nang.png",
+    "output": "assets/images/website/31_Lai_Xe_Ho_Son_Tra_Da_Nang.webp",
+    "size": [
+      1200,
+      800
+    ],
+    "bytes": 132500
+  },
+  "26_": {
+    "src": "C:\\Users\\admin\\OneDrive\\Pictures\\card\\ảnh làm web\\26_Tai_Xe_Dua_Don_Doi_Tac.png",
+    "output": "assets/images/website/26_Tai_Xe_Dua_Don_Doi_Tac.webp",
+    "size": [
+      1200,
+      800
+    ],
+    "bytes": 107052
+  },
+  "27_": {
+    "src": "C:\\Users\\admin\\OneDrive\\Pictures\\card\\ảnh làm web\\27_Tai_Xe_Phu_Vu_Tiec_Cuoi_Su_Kien.png",
+    "output": "assets/images/website/27_Tai_Xe_Phu_Vu_Tiec_Cuoi_Su_Kien.webp",
+    "size": [
+      1200,
+      800
+    ],
+    "bytes": 139116
+  },
+  "28_": {
+    "src": "C:\\Users\\admin\\OneDrive\\Pictures\\card\\ảnh làm web\\28_Thue_Tai_Xe_Da_Nang_Di_Hoi_An.png",
+    "output": "assets/images/website/28_Thue_Tai_Xe_Da_Nang_Di_Hoi_An.webp",
+    "size": [
+      1200,
+      800
+    ],
+    "bytes": 115882
+  },
+  "29_": {
+    "src": "C:\\Users\\admin\\OneDrive\\Pictures\\card\\ảnh làm web\\29_Thue_Tai_Xe_Da_Nang_Di_Hue.png",
+    "output": "assets/images/website/29_Thue_Tai_Xe_Da_Nang_Di_Hue.webp",
+    "size": [
+      1200,
+      800
+    ],
+    "bytes": 127186
+  }
+}

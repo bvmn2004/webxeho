@@ -3,7 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const mobileMenu = document.querySelector('.mobile-menu');
 
   hamburgerBtn.addEventListener('click', function () {
-    mobileMenu.classList.toggle('hidden');
+    const expanded = !mobileMenu.classList.toggle('hidden');
+    hamburgerBtn.setAttribute('aria-expanded', String(expanded));
+    hamburgerBtn.setAttribute('aria-label', expanded ? 'Đóng menu' : 'Mở menu');
   });
 });
 

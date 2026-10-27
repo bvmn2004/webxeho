@@ -1,0 +1,18 @@
+{
+  "content_pages": 30,
+  "new_pages": 10,
+  "hub_cards": 29,
+  "sitemap_urls": 31,
+  "protected_files_unchanged": [
+    "index.html",
+    "assets/js/booking.js",
+    "assets/js/script.js",
+    "assets/css/styles.css",
+    "assets/css/custom.css",
+    "CNAME",
+    "robots.txt",
+    "package.json",
+    "googled84ef8fe17c51628.html"
+  ],
+  "checks": "PASS: title, description, canonical, H1, links, anchors, images, JSON-LD, shared header/footer, topics and sitemap"
+}

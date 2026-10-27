@@ -1,0 +1,46 @@
+{
+  "cam-le-hoa-xuan": {
+    "source": "C:\\Users\\admin\\.codex\\generated_images\\01a17dfe-f827-72f0-ae9f-9699900e4b3d\\exec-f717fe45-801a-4ac7-a1ad-319fa7fbf7f4.png",
+    "reference": "C:/Users/admin/OneDrive/Pictures/card/Ảnh Đội Ngũ/Anh_Anh_Y_Ao_Gile_LXH.png",
+    "prompt": "Use case: identity-preserve. Image1 is the edit target service illustration. Image2 is the USER-PROVIDED MAN'S FACE AND UNIFORM REFERENCE. Replace the driver in image1 with exactly the same young Vietnamese man shown in image2. Strictly preserve his identity: facial proportions, eyes, nose, mouth, youthful age, skin tone, straight black fringe haircut. Do not use a generic model, do not age him up, and do not change the customer's face. Match the driver's uniform precisely to image2 including red reflective vest / black polo / black jacket as applicable, logo colors and small chest print. Preserve the image1 scene composition, parked vehicle, customer, lighting, handover action, aspect ratio and professional body language. Only alter the driver's identity and any necessary uniform detail. Natural face proportions, coherent lighting, no face collage seam. No text overlays, QR or new logos. If tiny chest phone text is visible it must read 0985 666 044. The final image will be clearly labeled an AI illustration, not documentary proof of staff or place.",
+    "output": "assets/images/website/lai-xe-ho-cam-le-hoa-xuan-minh-hoa.webp",
+    "size": [
+      1280,
+      853
+    ],
+    "bytes": 149324
+  },
+  "thanh-khe": {
+    "source": "C:\\Users\\admin\\.codex\\generated_images\\01a17dfe-f827-72f0-ae9f-9699900e4b3d\\exec-1d9075e1-c62f-4968-99fe-fc53867676cb.png",
+    "reference": "C:/Users/admin/OneDrive/Pictures/card/Ảnh Đội Ngũ/Anh_Anh_Y_Ao_Polo_LXH.png",
+    "prompt": "Use case: identity-preserve. Image1 is the edit target service illustration. Image2 is the USER-PROVIDED MAN'S FACE AND UNIFORM REFERENCE. Replace the driver in image1 with exactly the same young Vietnamese man shown in image2. Strictly preserve his identity: facial proportions, eyes, nose, mouth, youthful age, skin tone, straight black fringe haircut. Do not use a generic model, do not age him up, and do not change the customer's face. Match the driver's uniform precisely to image2 including red reflective vest / black polo / black jacket as applicable, logo colors and small chest print. Preserve the image1 scene composition, parked vehicle, customer, lighting, handover action, aspect ratio and professional body language. Only alter the driver's identity and any necessary uniform detail. Natural face proportions, coherent lighting, no face collage seam. No text overlays, QR or new logos. If tiny chest phone text is visible it must read 0985 666 044. The final image will be clearly labeled an AI illustration, not documentary proof of staff or place.",
+    "output": "assets/images/website/lai-xe-ho-thanh-khe-minh-hoa.webp",
+    "size": [
+      1280,
+      853
+    ],
+    "bytes": 137992
+  },
+  "ngu-hanh-son": {
+    "source": "C:\\Users\\admin\\.codex\\generated_images\\01a17dfe-f827-72f0-ae9f-9699900e4b3d\\exec-d88b4faf-3de1-404e-a0fa-ae57a6eba244.png",
+    "reference": "C:/Users/admin/OneDrive/Pictures/card/Ảnh Đội Ngũ/Anh_Anh_Y_Ao_Gile_LXH.png",
+    "prompt": "Use case: identity-preserve. Image1 is the edit target service illustration. Image2 is the USER-PROVIDED MAN'S FACE AND UNIFORM REFERENCE. Replace the driver in image1 with exactly the same young Vietnamese man shown in image2. Strictly preserve his identity: facial proportions, eyes, nose, mouth, youthful age, skin tone, straight black fringe haircut. Do not use a generic model, do not age him up, and do not change the customer's face. Match the driver's uniform precisely to image2 including red reflective vest / black polo / black jacket as applicable, logo colors and small chest print. Preserve the image1 scene composition, parked vehicle, customer, lighting, handover action, aspect ratio and professional body language. Only alter the driver's identity and any necessary uniform detail. Natural face proportions, coherent lighting, no face collage seam. No text overlays, QR or new logos. If tiny chest phone text is visible it must read 0985 666 044. The final image will be clearly labeled an AI illustration, not documentary proof of staff or place.",
+    "output": "assets/images/website/lai-xe-ho-ngu-hanh-son-minh-hoa.webp",
+    "size": [
+      1280,
+      853
+    ],
+    "bytes": 158564
+  },
+  "lien-chieu": {
+    "source": "C:\\Users\\admin\\.codex\\generated_images\\01a17dfe-f827-72f0-ae9f-9699900e4b3d\\exec-f94f7b16-414b-4d4d-adc0-e761bb61febd.png",
+    "reference": "C:/Users/admin/OneDrive/Pictures/card/Ảnh Đội Ngũ/Anh_Anh_Y_Ao_Khoac_LXH.png",
+    "prompt": "Use case: identity-preserve. Image1 is the edit target service illustration. Image2 is the USER-PROVIDED MAN'S FACE AND UNIFORM REFERENCE. Replace the driver in image1 with exactly the same young Vietnamese man shown in image2. Strictly preserve his identity: facial proportions, eyes, nose, mouth, youthful age, skin tone, straight black fringe haircut. Do not use a generic model, do not age him up, and do not change the customer's face. Match the driver's uniform precisely to image2 including red reflective vest / black polo / black jacket as applicable, logo colors and small chest print. Preserve the image1 scene composition, parked vehicle, customer, lighting, handover action, aspect ratio and professional body language. Only alter the driver's identity and any necessary uniform detail. Natural face proportions, coherent lighting, no face collage seam. No text overlays, QR or new logos. If tiny chest phone text is visible it must read 0985 666 044. The final image will be clearly labeled an AI illustration, not documentary proof of staff or place.",
+    "output": "assets/images/website/lai-xe-ho-lien-chieu-minh-hoa.webp",
+    "size": [
+      1280,
+      853
+    ],
+    "bytes": 169626
+  }
+}

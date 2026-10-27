@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="vi">
 
 <head>
   <!-- Charset + Responsive -->
@@ -143,6 +143,7 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
   </script>
 
 
+<link rel="stylesheet" href="assets/css/discovery.css">
 </head>
 
 
@@ -196,7 +197,7 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
 
       <!-- Hamburger menu (for mobile) -->
       <div class="flex md:hidden">
-        <button id="hamburger" class="text-white focus:outline-none">
+        <button id="hamburger" class="text-white focus:outline-none" aria-label="Mở menu" aria-controls="mobile-menu-placeholder" aria-expanded="false">
           <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
           </svg>
@@ -205,15 +206,12 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
 
       <!-- Center section: Menu -->
       <nav class="hidden md:flex md:flex-grow justify-center">
-        <ul class="flex justify-center space-x-4 text-white">
-          <li><a href="#quick-booking" class="hover:text-secondary font-bold">Đặt Tài Xế Nhanh</a></li>
+        <ul class="flex justify-center space-x-4 text-white ny-home-menu">
           <li><a href="#home" class="hover:text-secondary font-bold">Trang Chủ</a></li>
           <li><a href="#aboutus" class="hover:text-secondary font-bold">Giới Thiệu</a></li>
-          <li><a href="#results" class="hover:text-secondary font-bold">Thành Tựu</a></li>
-          <li><a href="#reviews" class="hover:text-secondary font-bold">Đánh Giá</a></li>
           <li><a href="#portfolio" class="hover:text-secondary font-bold">Dịch Vụ</a></li>
-          <li><a href="#team" class="hover:text-secondary font-bold">Đội Ngũ</a></li>
           <li><a href="#contact" class="hover:text-secondary font-bold">Liên Hệ</a></li>
+          <li><a href="tin-tuc.html" class="hover:text-secondary font-bold">Tin Tức</a></li>
         </ul>
       </nav>
 
@@ -229,14 +227,11 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
   <!-- Mobile menu -->
   <nav id="mobile-menu-placeholder" class="mobile-menu hidden items-center space-y-8 md:hidden">
     <ul>
-      <li><a href="#quick-booking" class="hover:text-secondary font-bold">Đặt Tài Xế Nhanh</a></li>
       <li><a href="#home" class="hover:text-secondary font-bold">Trang Chủ</a></li>
       <li><a href="#aboutus" class="hover:text-secondary font-bold">Giới Thiệu</a></li>
-      <li><a href="#results" class="hover:text-secondary font-bold">Thành Tựu</a></li>
-      <li><a href="#reviews" class="hover:text-secondary font-bold">Đánh Giá</a></li>
       <li><a href="#portfolio" class="hover:text-secondary font-bold">Dịch Vụ</a></li>
-      <li><a href="#team" class="hover:text-secondary font-bold">Đội Ngũ</a></li>
       <li><a href="#contact" class="hover:text-secondary font-bold">Liên Hệ</a></li>
+          <li><a href="tin-tuc.html" class="hover:text-secondary font-bold">Tin Tức</a></li>
     </ul>
     <div class="flex flex-col mt-6 space-y-2 items-center">
       <a href="#quick-booking"
@@ -246,6 +241,7 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
         class="bg-primary hover:bg-secondary text-white font-semibold px-4 py-2 rounded flex items-center justify-center min-w-[110px]">Zalo</a>
     </div>
   </nav>
+
 
   <!-- Quick Booking Section -->
   <section id="quick-booking" class="bg-white py-16">
@@ -748,7 +744,7 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
     </div>
   </section>
 
-  <section id="contact" class="bg-cover bg-no-repeat bg-center relative py-16 px-2">
+<section id="contact" class="bg-cover bg-no-repeat bg-center relative py-16 px-2">
     <div
       class="grid md:grid-cols-2 gap-16 items-center relative overflow-hidden p-10 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-3xl max-w-6xl mx-auto bg-white text-[#333] my-6 before:absolute before:right-0 before:w-[300px] before:bg-blue-400 before:h-full max-md:before:hidden">
 

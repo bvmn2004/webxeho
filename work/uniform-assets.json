@@ -1,0 +1,50 @@
+{
+  "Anh_Anh_Y_Ao_Gile_LXH.png": {
+    "output": "assets/images/team/nhu-y-dong-phuc-gile.webp",
+    "size": [
+      1086,
+      1448
+    ],
+    "bytes": 138152
+  },
+  "Anh_Anh_Y_Ao_Khoac_LXH.png": {
+    "output": "assets/images/team/nhu-y-dong-phuc-ao-khoac.webp",
+    "size": [
+      1086,
+      1448
+    ],
+    "bytes": 108612
+  },
+  "Anh_Anh_Y_Ao_Polo_LXH.png": {
+    "output": "assets/images/team/nhu-y-dong-phuc-polo.webp",
+    "size": [
+      1086,
+      1448
+    ],
+    "bytes": 98274
+  },
+  "Anh_Ao_Gile_Tai_Xe.png": {
+    "output": "assets/images/team/mau-ao-gile-tai-xe.webp",
+    "size": [
+      1200,
+      900
+    ],
+    "bytes": 87964
+  },
+  "Anh_Ao_Khoac_Tai_Xe.png": {
+    "output": "assets/images/team/mau-ao-khoac-tai-xe.webp",
+    "size": [
+      1200,
+      900
+    ],
+    "bytes": 71054
+  },
+  "Anh_Ao_Polo_Tai_Xe.png": {
+    "output": "assets/images/team/mau-ao-polo-tai-xe.webp",
+    "size": [
+      1200,
+      900
+    ],
+    "bytes": 39540
+  }
+}
