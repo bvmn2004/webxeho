@@ -68,10 +68,31 @@ if (input) {
   applyFilter();
 }
 document.querySelectorAll('a[href="tel:0985666044"], a[href="https://zalo.me/0985666044"]').forEach(link => {
- link.addEventListener('click', () => {
-  if (typeof gtag === 'function') {
-   gtag('event', 'conversion', {send_to:'AW-18148925849/knAqCJfnh6wcEJnDis5D'});
-   gtag('event', 'conversion', {send_to:'AW-17783643653/SVzMCJn6lrscEIW8859C',value:1.0,currency:'VND'});
+  // Tránh bắn 2 lần conversion nếu liên kết đã gắn gtag_report_conversion qua onclick
+  if (link.hasAttribute('onclick') && link.getAttribute('onclick').includes('gtag_report_conversion')) {
+    return;
   }
- });
+  link.addEventListener('click', () => {
+    if (typeof gtag === 'function') {
+      gtag('event', 'conversion', {send_to:'AW-18148925849/knAqCJfnh6wcEJnDis5D'});
+      gtag('event', 'conversion', {send_to:'AW-17783643653/SVzMCJn6lrscEIW8859C',value:1.0,currency:'VND'});
+    }
+  });
 });
+const initHamburger = () => {
+  const hamburgerBtn = document.getElementById('hamburger');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  if (hamburgerBtn && mobileMenu && !hamburgerBtn.dataset.bound) {
+    hamburgerBtn.dataset.bound = 'true';
+    hamburgerBtn.addEventListener('click', function () {
+      const expanded = !mobileMenu.classList.toggle('hidden');
+      hamburgerBtn.setAttribute('aria-expanded', String(expanded));
+      hamburgerBtn.setAttribute('aria-label', expanded ? 'Đóng menu' : 'Mở menu');
+    });
+  }
+};
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initHamburger);
+} else {
+  initHamburger();
+}

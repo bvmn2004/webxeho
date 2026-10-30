@@ -124,9 +124,20 @@ h1, h2, h3, h4, h5, h6, p, a {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Hiệu ứng rung */
   animation: ring 1.4s infinite ease-in-out;
+}
+
+.fc-btn:hover {
+  transform: scale(1.12);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.fc-btn:focus-visible {
+  outline: 3px solid #ffcc00;
+  outline-offset: 3px;
 }
 
 /* ---- MÀU CHO TỪNG NÚT ---- */
@@ -147,6 +158,12 @@ h1, h2, h3, h4, h5, h6, p, a {
 .fc-btn img {
   position: relative;
   z-index: 5;
+  transition: transform 0.2s ease;
+}
+
+.fc-btn:hover svg,
+.fc-btn:hover img {
+  transform: scale(1.08);
 }
 
 .zalo-icon-img {
@@ -167,6 +184,7 @@ h1, h2, h3, h4, h5, h6, p, a {
   border-radius: 50%;
   animation: ripple 1.5s infinite ease-out;
   z-index: 1;
+  pointer-events: none;
 }
 
 /* Vòng nhạt */
@@ -209,6 +227,45 @@ h1, h2, h3, h4, h5, h6, p, a {
 @keyframes ripple {
   0%   { transform: scale(0.85); opacity: 0.8; }
   100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Accessibility: Giảm chuyển động cho người dùng hạn chế hiệu ứng */
+@media (prefers-reduced-motion: reduce) {
+  .fc-btn {
+    animation: none !important;
+    transition: none !important;
+  }
+  .ripple-circle,
+  .ripple-fill {
+    animation: none !important;
+    display: none !important;
+  }
+}
+
+/* Responsive trên điện thoại */
+@media (max-width: 640px) {
+  #floating-contact {
+    bottom: 20px;
+    right: 16px;
+    gap: 12px;
+  }
+  .fc-btn {
+    width: 50px;
+    height: 50px;
+  }
+  .ripple-circle,
+  .ripple-fill {
+    width: 50px;
+    height: 50px;
+  }
+  .fc-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+  .zalo-icon-img {
+    width: 26px;
+    height: 26px;
+  }
 }
 
 /* ========== QUICK BOOKING SECTION ========== */

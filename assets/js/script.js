@@ -93,23 +93,40 @@ document.addEventListener('DOMContentLoaded', function() {
   
 });
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
-      e.preventDefault();
+      const rawHref = this.getAttribute('href');
+      const hash = rawHref.startsWith('/#') ? rawHref.slice(1) : rawHref;
+      if (hash && hash !== '#') {
+          const targetSection = document.querySelector(hash);
+          if (targetSection) {
+              e.preventDefault();
+              const offset = 88;
+              const targetPosition = targetSection.getBoundingClientRect().top + window.scrollY - offset;
 
-      const targetId = this.getAttribute('href');
-      const targetSection = document.querySelector(targetId);
-      if (targetSection) {
-          const offset = 88;
-          const targetPosition = targetSection.getBoundingClientRect().top + window.scrollY - offset;
+              window.scrollTo({
+                  top: targetPosition,
+                  behavior: 'smooth'
+              });
 
-          window.scrollTo({
-              top: targetPosition,
-              behavior: 'smooth'
-          });
+              if (history.pushState) {
+                  history.pushState(null, null, hash);
+              }
+          }
       }
   });
 });
+
+if (window.location.hash) {
+  const initialTarget = document.querySelector(window.location.hash);
+  if (initialTarget) {
+    setTimeout(() => {
+      const offset = 88;
+      const targetPos = initialTarget.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: targetPos, behavior: 'smooth' });
+    }, 100);
+  }
+}
 
 
 // Khởi tạo EmailJS

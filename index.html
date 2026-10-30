@@ -12,7 +12,7 @@
 
   <!-- SEO: Description + Keywords -->
   <meta name="description"
-    content="Như Ý Driver – dịch vụ lái xe hộ Đà Nẵng 24/7. Nhận lái xe sau tiệc, lái xe hộ đường dài, tài xế theo giờ tại Sơn Trà, Ngũ Hành Sơn, Hải Châu, Thanh Khê, Cẩm Lệ, Liên Chiểu, Hoà Xuân. An toàn – uy tín – có mặt nhanh. Gọi 0985 666 044.">
+    content="Dịch vụ lái xe hộ Đà Nẵng 24/7 uy tín cùng Như Ý Driver. Nhận lái ô tô, xe máy sau tiệc, theo giờ, đi tỉnh. An toàn, tận tâm. Liên hệ ngay 0985 666 044.">
 
   <meta name="keywords" content="
 lái xe hộ Đà Nẵng, dịch vụ lái xe hộ, tài xế theo giờ Đà Nẵng, lái xe sau tiệc, lái xe hộ đường dài,
@@ -22,11 +22,12 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
 
   <meta name="robots" content="index, follow">
   <meta name="author" content="Như Ý Driver">
+  <meta property="og:site_name" content="Như Ý Driver">
 
   <!-- Open Graph (Facebook/Zalo) -->
   <meta property="og:title" content="Dịch Vụ Lái Xe Hộ Đà Nẵng 24/7 – Như Ý Driver">
   <meta property="og:description"
-    content="Lái xe hộ sau tiệc, đường dài, tài xế theo giờ. An toàn – uy tín – có mặt nhanh.">
+    content="Dịch vụ lái xe hộ Đà Nẵng 24/7 uy tín cùng Như Ý Driver. Nhận lái ô tô, xe máy sau tiệc, theo giờ, đi tỉnh. An toàn, tận tâm. Liên hệ ngay 0985 666 044.">
   <meta property="og:image" content="https://laixehodanang.me/assets/images/og-image.png">
   <meta property="og:url" content="https://laixehodanang.me">
   <meta property="og:type" content="website">
@@ -35,7 +36,7 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Dịch Vụ Lái Xe Hộ Đà Nẵng – Như Ý Driver">
-  <meta name="twitter:description" content="Dịch vụ lái xe hộ an toàn – uy tín – nhanh chóng tại Đà Nẵng.">
+  <meta name="twitter:description" content="Dịch vụ lái xe hộ Đà Nẵng 24/7 uy tín cùng Như Ý Driver. Nhận lái ô tô, xe máy sau tiệc, theo giờ, đi tỉnh. An toàn, tận tâm. Liên hệ ngay 0985 666 044.">
   <meta name="twitter:image" content="https://laixehodanang.me/assets/images/og-image.png">
 
   <!-- Google Verification -->
@@ -119,31 +120,38 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
     gtag('config', 'AW-17783643653');
   </script>
 
-  <!-- Conversion snippet: Gọi khi click Zalo/Phone trực tiếp -->
+  <!-- Conversion snippet: Gọi khi click Zalo/Phone trực tiếp với fallback an toàn -->
   <script>
     function gtag_report_conversion(url) {
+      var navigated = false;
       var callback = function () {
-        if (typeof (url) != 'undefined') {
+        if (!navigated && typeof (url) != 'undefined' && url) {
+          navigated = true;
           window.location = url;
         }
       };
-      // Tài khoản 1: có event_callback để điều hướng sau khi conversion ghi nhận
-      gtag('event', 'conversion', {
-        'send_to': 'AW-18148925849/knAqCJfnh6wcEJnDis5D',
-        'event_callback': callback
-      });
-      // Tài khoản 2: thêm value + currency theo snippet Google Ads cấp
-      gtag('event', 'conversion', {
-        'send_to': 'AW-17783643653/SVzMCJn6lrscEIW8859C',
-        'value': 1.0,
-        'currency': 'VND'
-      });
+      setTimeout(callback, 500);
+      if (typeof gtag === 'function') {
+        // Tài khoản 1: có event_callback để điều hướng sau khi conversion ghi nhận
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18148925849/knAqCJfnh6wcEJnDis5D',
+          'event_callback': callback
+        });
+        // Tài khoản 2: thêm value + currency theo snippet Google Ads cấp
+        gtag('event', 'conversion', {
+          'send_to': 'AW-17783643653/SVzMCJn6lrscEIW8859C',
+          'value': 1.0,
+          'currency': 'VND'
+        });
+      } else {
+        callback();
+      }
       return false;
     }
   </script>
 
 
-<link rel="stylesheet" href="assets/css/discovery.css">
+  <link rel="stylesheet" href="assets/css/discovery.css">
 </head>
 
 
@@ -153,12 +161,12 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
   <div id="floating-contact">
 
     <!-- Facebook -->
-    <a href="https://facebook.com/profile.php?id=61583832241506" target="_blank" class="fc-btn fb-btn">
+    <a href="https://facebook.com/profile.php?id=61583832241506" target="_blank" rel="noopener noreferrer" class="fc-btn fb-btn" aria-label="Facebook Như Ý Driver" title="Facebook Như Ý Driver">
 
       <div class="ripple-circle"></div>
       <div class="ripple-fill"></div>
 
-      <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" width="26" height="26" viewBox="0 0 24 24">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
         <path
           d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12" />
       </svg>
@@ -166,21 +174,21 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
 
     <!-- Zalo (TRACKING) -->
     <a href="https://zalo.me/0985666044" class="fc-btn zalo-btn"
-      onclick="return gtag_report_conversion('https://zalo.me/0985666044');">
+      onclick="return gtag_report_conversion('https://zalo.me/0985666044');" aria-label="Liên hệ Như Ý Driver qua Zalo" title="Chat Zalo Như Ý Driver">
 
       <div class="ripple-circle"></div>
       <div class="ripple-fill"></div>
 
-      <img src="assets/images/zalo-icon.svg" width="30" height="30" alt="Zalo" class="zalo-icon-img">
+      <img src="assets/images/zalo-icon.svg" width="30" height="30" alt="" class="zalo-icon-img">
     </a>
 
     <!-- Phone (TRACKING) -->
-    <a href="tel:0985666044" class="fc-btn call-btn" onclick="return gtag_report_conversion('tel:0985666044');">
+    <a href="tel:0985666044" class="fc-btn call-btn" onclick="return gtag_report_conversion('tel:0985666044');" aria-label="Gọi Như Ý Driver 0985 666 044" title="Gọi hotline">
 
       <div class="ripple-circle"></div>
       <div class="ripple-fill"></div>
 
-      <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" width="26" height="26" viewBox="0 0 24 24">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
         <path
           d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.3 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V21c0 .6-.4 1-1 1A19 19 0 0 1 3 5c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.5.6 3.6.1.4 0 .8-.3 1l-2.2 2.2z" />
       </svg>
@@ -197,7 +205,8 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
 
       <!-- Hamburger menu (for mobile) -->
       <div class="flex md:hidden">
-        <button id="hamburger" class="text-white focus:outline-none" aria-label="Mở menu" aria-controls="mobile-menu-placeholder" aria-expanded="false">
+        <button id="hamburger" class="text-white focus:outline-none" aria-label="Mở menu"
+          aria-controls="mobile-menu-placeholder" aria-expanded="false">
           <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
           </svg>
@@ -207,17 +216,17 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
       <!-- Center section: Menu -->
       <nav class="hidden md:flex md:flex-grow justify-center">
         <ul class="flex justify-center space-x-4 text-white ny-home-menu">
-          <li><a href="#home" class="hover:text-secondary font-bold">Trang Chủ</a></li>
-          <li><a href="#aboutus" class="hover:text-secondary font-bold">Giới Thiệu</a></li>
-          <li><a href="#portfolio" class="hover:text-secondary font-bold">Dịch Vụ</a></li>
-          <li><a href="#contact" class="hover:text-secondary font-bold">Liên Hệ</a></li>
-          <li><a href="tin-tuc.html" class="hover:text-secondary font-bold">Tin Tức</a></li>
+          <li><a href="/#home" class="hover:text-secondary font-bold">Trang Chủ</a></li>
+          <li><a href="/#aboutus" class="hover:text-secondary font-bold">Giới Thiệu</a></li>
+          <li><a href="/#portfolio" class="hover:text-secondary font-bold">Dịch Vụ</a></li>
+          <li><a href="/#contact" class="hover:text-secondary font-bold">Liên Hệ</a></li>
+          <li><a href="/tin-tuc.html" class="hover:text-secondary font-bold">Tin Tức</a></li>
         </ul>
       </nav>
 
       <!-- Right section: Buttons (for desktop) -->
       <div class="hidden lg:flex items-center space-x-4">
-        <a href="#quick-booking"
+        <a href="/#quick-booking"
           class="bg-secondary hover:bg-primary text-white font-semibold px-4 py-2 rounded inline-block">Đặt Nhanh</a>
         <a href="https://zalo.me/0985666044"
           class="bg-primary hover:bg-secondary text-white font-semibold px-4 py-2 rounded inline-block">Zalo</a>
@@ -227,14 +236,14 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
   <!-- Mobile menu -->
   <nav id="mobile-menu-placeholder" class="mobile-menu hidden items-center space-y-8 md:hidden">
     <ul>
-      <li><a href="#home" class="hover:text-secondary font-bold">Trang Chủ</a></li>
-      <li><a href="#aboutus" class="hover:text-secondary font-bold">Giới Thiệu</a></li>
-      <li><a href="#portfolio" class="hover:text-secondary font-bold">Dịch Vụ</a></li>
-      <li><a href="#contact" class="hover:text-secondary font-bold">Liên Hệ</a></li>
-          <li><a href="tin-tuc.html" class="hover:text-secondary font-bold">Tin Tức</a></li>
+      <li><a href="/#home" class="hover:text-secondary font-bold">Trang Chủ</a></li>
+      <li><a href="/#aboutus" class="hover:text-secondary font-bold">Giới Thiệu</a></li>
+      <li><a href="/#portfolio" class="hover:text-secondary font-bold">Dịch Vụ</a></li>
+      <li><a href="/#contact" class="hover:text-secondary font-bold">Liên Hệ</a></li>
+      <li><a href="/tin-tuc.html" class="hover:text-secondary font-bold">Tin Tức</a></li>
     </ul>
     <div class="flex flex-col mt-6 space-y-2 items-center">
-      <a href="#quick-booking"
+      <a href="/#quick-booking"
         class="bg-secondary hover:bg-primary text-white font-semibold px-4 py-2 rounded flex items-center justify-center min-w-[110px]">Đặt
         Nhanh</a>
       <a href="https://zalo.me/0985666044"
@@ -610,9 +619,9 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         <div class="group portfolio-item relative hover:shadow-lg shadow-md rounded-lg overflow-hidden">
-          <a href="https://www.facebook.com/profile.php?id=61583832241506">
+          <a href="lai-xe-ho-sau-tiec-da-nang.html">
             <img class="w-full h-60 object-cover" src="assets/images/portfolio-1.jpg"
-              alt="Dịch vụ lái xe hộ Đà Nẵng - Như Ý Driver">
+              alt="Dịch vụ lái xe hộ sau tiệc Đà Nẵng - Như Ý Driver">
             <div
               class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-primary to-secondary opacity-0 transition duration-300 ease-in-out group-hover:opacity-70">
             </div>
@@ -625,8 +634,8 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
           </a>
         </div>
         <div class="group portfolio-item relative hover:shadow-lg shadow-md rounded-lg overflow-hidden">
-          <a href="https://zalo.me/0985666044">
-            <img class="w-full h-60 object-cover" src="assets/images/portfolio-2.jpg" alt="Lái xe hộ sau tiệc Đà Nẵng">
+          <a href="thue-tai-xe-theo-ngay-da-nang.html">
+            <img class="w-full h-60 object-cover" src="assets/images/portfolio-2.jpg" alt="Thuê tài xế theo ngày đi du lịch Đà Nẵng">
             <div
               class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-primary to-secondary opacity-0 transition duration-300 ease-in-out group-hover:opacity-70">
             </div>
@@ -638,9 +647,9 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
           </a>
         </div>
         <div class="group portfolio-item relative hover:shadow-lg shadow-md rounded-lg overflow-hidden">
-          <a href="https://www.facebook.com/groups/1808945423829482">
+          <a href="thue-tai-xe-di-tinh-da-nang.html">
             <img class="w-full h-60 object-cover" src="assets/images/portfolio-3.jpg"
-              alt="Lái xe hộ đi du lịch Đà Nẵng">
+              alt="Thuê tài xế lái xe hộ đi tỉnh đường dài từ Đà Nẵng">
             <div
               class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-primary to-secondary opacity-0 transition duration-300 ease-in-out group-hover:opacity-70">
             </div>
@@ -652,8 +661,8 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
           </a>
         </div>
         <div class="group portfolio-item relative hover:shadow-lg shadow-md rounded-lg overflow-hidden">
-          <a href="https://www.facebook.com/yy.trannnhuu.58">
-            <img class="w-full h-60 object-cover" src="assets/images/portfolio-4.png" alt="Tài xế theo giờ Đà Nẵng">
+          <a href="thue-tai-xe-theo-gio-da-nang.html">
+            <img class="w-full h-60 object-cover" src="assets/images/portfolio-4.png" alt="Thuê tài xế theo giờ Đà Nẵng">
             <div
               class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-primary to-secondary opacity-0 transition duration-300 ease-in-out group-hover:opacity-70">
             </div>
@@ -665,8 +674,8 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
           </a>
         </div>
         <div class="group portfolio-item relative hover:shadow-lg shadow-md rounded-lg overflow-hidden">
-          <a href="https://www.tiktok.com/@trannhuy4781">
-            <img class="w-full h-60 object-cover" src="assets/images/portfolio-5.jpg" alt="Đưa bạn về tận nhà Đà Nẵng">
+          <a href="lai-xe-ho-o-to-da-nang.html">
+            <img class="w-full h-60 object-cover" src="assets/images/portfolio-5.jpg" alt="Dịch vụ lái xe hộ ô tô Đà Nẵng">
             <div
               class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-primary to-secondary opacity-0 transition duration-300 ease-in-out group-hover:opacity-70">
             </div>
@@ -678,9 +687,9 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
           </a>
         </div>
         <div class="group portfolio-item relative hover:shadow-lg shadow-md rounded-lg overflow-hidden">
-          <a href="https://zalo.me/0985666044">
+          <a href="lai-xe-ho-xe-may-da-nang.html">
             <img class="w-full h-60 object-cover" src="assets/images/portfolio-6.jpg"
-              alt="Hỗ trợ đưa đón người thân Đà Nẵng">
+              alt="Dịch vụ lái xe hộ xe máy Đà Nẵng">
             <div
               class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-primary to-secondary opacity-0 transition duration-300 ease-in-out group-hover:opacity-70">
             </div>
@@ -731,20 +740,22 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
 
         <!-- Ảnh card visit (mặt sau / bảng giá) -->
         <div class="bg-white rounded-lg overflow-hidden shadow-md">
-          <img src="assets/images/card-b.png" alt="Thông Tin Liên Hệ & Bảng Giá" class="w-full h-auto">
-          <div class="p-4 text-center">
-            <h3 class="text-xl font-bold text-primary">Bảng Giá</h3>
-            <p class="text-gray-dark mt-2">
-              Các phương thức liên hệ – bảng giá tham khảo – thông tin hỗ trợ.
-            </p>
-          </div>
+          <a href="bang-gia-lai-xe-ho-da-nang.html" class="block hover:opacity-95 transition">
+            <img src="assets/images/card-b.png" alt="Thông Tin Liên Hệ & Bảng Giá Lái Xe Hộ Đà Nẵng" class="w-full h-auto">
+            <div class="p-4 text-center">
+              <h3 class="text-xl font-bold text-primary hover:underline">Bảng Giá Lái Xe Hộ</h3>
+              <p class="text-gray-dark mt-2">
+                Các phương thức liên hệ – bảng giá tham khảo ô tô & xe máy – thông tin hỗ trợ.
+              </p>
+            </div>
+          </a>
         </div>
 
       </div>
     </div>
   </section>
 
-<section id="contact" class="bg-cover bg-no-repeat bg-center relative py-16 px-2">
+  <section id="contact" class="bg-cover bg-no-repeat bg-center relative py-16 px-2">
     <div
       class="grid md:grid-cols-2 gap-16 items-center relative overflow-hidden p-10 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-3xl max-w-6xl mx-auto bg-white text-[#333] my-6 before:absolute before:right-0 before:w-[300px] before:bg-blue-400 before:h-full max-md:before:hidden">
 
@@ -841,14 +852,13 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
       <div class="text-center md:text-left">
         <h3 class="text-lg font-bold mb-4">Khu Vực Phục Vụ</h3>
         <ul class="space-y-2 text-sm">
-          <li>Lái xe hộ Đà Nẵng</li>
-          <li>Lái xe hộ Sơn Trà</li>
-          <li>Lái xe hộ Ngũ Hành Sơn</li>
-          <li>Lái xe hộ Hải Châu</li>
-          <li>Lái xe hộ Thanh Khê</li>
-          <li>Lái xe hộ Cẩm Lệ</li>
-          <li>Lái xe hộ Liên Chiểu</li>
-          <li>Lái xe hộ Hoà Xuân</li>
+          <li><a href="khu-vuc-phuc-vu.html" class="hover:text-primary transition">Khu vực phục vụ Đà Nẵng</a></li>
+          <li><a href="lai-xe-ho-hai-chau-da-nang.html" class="hover:text-primary transition">Lái xe hộ Hải Châu</a></li>
+          <li><a href="lai-xe-ho-son-tra-da-nang.html" class="hover:text-primary transition">Lái xe hộ Sơn Trà</a></li>
+          <li><a href="lai-xe-ho-ngu-hanh-son-da-nang.html" class="hover:text-primary transition">Lái xe hộ Ngũ Hành Sơn</a></li>
+          <li><a href="lai-xe-ho-thanh-khe-da-nang.html" class="hover:text-primary transition">Lái xe hộ Thanh Khê</a></li>
+          <li><a href="lai-xe-ho-cam-le-da-nang.html" class="hover:text-primary transition">Lái xe hộ Cẩm Lệ – Hoà Xuân</a></li>
+          <li><a href="lai-xe-ho-lien-chieu-da-nang.html" class="hover:text-primary transition">Lái xe hộ Liên Chiểu</a></li>
         </ul>
       </div>
 
@@ -856,14 +866,18 @@ lái xe hộ Sơn Trà, lái xe hộ Hải Châu, lái xe hộ Thanh Khê, lái 
       <div class="text-center md:text-left">
         <h3 class="text-lg font-bold mb-4">Dịch Vụ Hỗ Trợ</h3>
         <ul class="space-y-2 text-sm mb-6">
-          <li>Lái xe hộ đường dài</li>
-          <li>Lái xe hộ sau tiệc</li>
-          <li>Lái xe hộ khi mệt / mất ngủ</li>
-          <li>Lái xe hộ đưa người thân</li>
+          <li><a href="bang-gia-lai-xe-ho-da-nang.html" class="hover:text-primary transition">Bảng giá lái xe hộ</a></li>
+          <li><a href="lai-xe-ho-o-to-da-nang.html" class="hover:text-primary transition">Lái xe hộ ô tô</a></li>
+          <li><a href="lai-xe-ho-xe-may-da-nang.html" class="hover:text-primary transition">Lái xe hộ xe máy</a></li>
+          <li><a href="lai-xe-ho-sau-tiec-da-nang.html" class="hover:text-primary transition">Lái xe hộ sau tiệc</a></li>
+          <li><a href="thue-tai-xe-theo-gio-da-nang.html" class="hover:text-primary transition">Thuê tài xế theo giờ</a></li>
+          <li><a href="thue-tai-xe-theo-ngay-da-nang.html" class="hover:text-primary transition">Thuê tài xế theo ngày</a></li>
+          <li><a href="thue-tai-xe-di-tinh-da-nang.html" class="hover:text-primary transition">Thuê tài xế đi tỉnh</a></li>
+          <li><a href="tin-tuc.html" class="hover:text-primary transition">Tin tức & cẩm nang</a></li>
         </ul>
 
         <!-- SOCIAL + LOGO -->
-        <img src="assets/images/logo-y.png" alt="Logo" class="h-16 w-auto mb-4 mx-auto md:mx-0">
+        <img src="assets/images/logo-y.png" alt="Như Ý Driver" class="h-16 w-auto mb-4 mx-auto md:mx-0">
 
         <div class="flex items-center justify-center md:justify-start space-x-4">
           <a href="https://www.facebook.com/profile.php?id=61583832241506" target="_blank"
